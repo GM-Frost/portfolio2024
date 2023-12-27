@@ -21,27 +21,36 @@ const Hero = () => {
             <div className="text-sm uppercase font-semibold mb-4 text-primary tracking-[4px]">
               Full Stack Developer
             </div>
-            <h1 className="h1">Hello, This is Nayan</h1>
+            <h1 className="h1  flex gap-x-1">
+              Hello, I'm Nayan<span className="animate-bounce">👋</span>
+            </h1>
+
             <p className="subtitle max-w-[490px] mx-auto xl:mx-0">
               It's an extension of your personality and gives you the chance to
               craft a design that reflects who you are
             </p>
             {/* Button */}
-            <div className="flex flex-col gap-y-3 md:flex-row gap-x-3 mx-auto xl:mx-0 mb_12">
+            <div className="flex flex-col gap-y-3 md:flex-row gap-x-3 mx-auto xl:mx-0 mb-12">
               <Link href={"/contact"}>
                 <Button className="gap-x-2">
                   Contact Me <Send size={18} />
                 </Button>
               </Link>
-              <Link href={"/contact"}>
-                <Button variant="secondary" className="gap-x-2">
-                  Download CV <Download size={18} />
-                </Button>
-              </Link>
+
+              <Button variant="secondary" className="gap-x-2">
+                Download CV <Download size={18} />
+              </Button>
             </div>
+            {/* Socials */}
+            <Socials
+              containerStyles="flex gap-x-6 mx-auto xl:mx-0"
+              iconsStyles="text-foreground text-[22px] hover:text-primary transition-all duration-300"
+            />
           </div>
           {/* Image */}
-          <div className="hidden xl:flex relative">Image</div>
+          <div className="hidden xl:flex relative">
+            <div className="bg-hero_shape2_light dark:bg-hero_shape2_dark w-[500px] h-[500px] bg-no-repeat absolute -top-1 -right-2"></div>
+          </div>
         </div>
         <div className="hidden md:flex absolute left-2/4 bottom-44 xl:bottom-12 animate-bounce">
           <RiArrowDownSLine className="text-3xl text-primary" />
