@@ -26,8 +26,8 @@ const Hero: React.FC = () => {
             </h1>
 
             <p className="subtitle max-w-[490px] mx-auto xl:mx-0">
-              It's an extension of your personality and gives you the chance to
-              craft a design that reflects who you are
+              I help our clients create brands, build digital products and
+              services, innovate, find opportunities and validate ideas
             </p>
             {/* Button */}
             <div className="flex flex-col gap-y-3 md:flex-row gap-x-3 mx-auto xl:mx-0 mb-12">
@@ -38,7 +38,7 @@ const Hero: React.FC = () => {
               </Link>
 
               <Button variant="secondary" className="gap-x-2">
-                Download CV <Download size={18} />
+                Resume <Download size={18} />
               </Button>
             </div>
             {/* Socials */}
