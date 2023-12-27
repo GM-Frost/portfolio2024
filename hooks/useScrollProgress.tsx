@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const useScrollProgress = () => {
   const [completion, setCompletion] = useState<number>(0);
+
   useEffect(() => {
     const updateScrollCompletion = () => {
       const currentProgress: number = window.scrollY;
@@ -10,7 +11,7 @@ const useScrollProgress = () => {
 
       if (scrollHeight) {
         setCompletion(
-          Number(((currentProgress / scrollHeight) * 100).toFixed(2))
+          Number((currentProgress / scrollHeight).toFixed(2)) * 100
         );
       }
     };

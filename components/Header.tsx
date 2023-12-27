@@ -11,21 +11,28 @@ const Header = () => {
   const pathname = usePathname();
 
   useEffect(() => {
-    const scrollYPos = window.addEventListener("scroll", () => {
+    const handleScroll = () => {
       window.scrollY > 50 ? setHeader(true) : setHeader(false);
-    });
-    //Remove the events
-    return () => window.removeEventListener("scroll", scrollYPos);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Remove the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   });
   return (
     <header
-      className={`${
+      className={`
+      ${
         header
           ? "py-4 bg-white shadow-lg dark:bg-accent"
           : "py-6 dark:bg-transparent"
-      } sticky top-0 z-30 transition-all duration-300 ${
-        pathname === "/" && "bg-[#fef9f5]"
-      }`}
+      }
+      sticky top-0 z-30 transition-all duration-300
+      ${pathname === "/" && "bg-[#fef9f5]"}
+    `}
     >
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
