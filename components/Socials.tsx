@@ -32,7 +32,13 @@ const icons = [
     name: <RiInstagramFill />,
   },
 ];
-const Socials = ({ containerStyles, iconsStyles }) => {
+
+interface SocialsProps {
+  containerStyles: string;
+  iconsStyles: string;
+}
+
+const Socials: React.FC<SocialsProps> = ({ containerStyles, iconsStyles }) => {
   return (
     <div className={`${containerStyles}`}>
       {icons.map((icon, i) => {

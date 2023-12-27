@@ -1,6 +1,15 @@
 "use client";
 import CountUp from "react-countup";
-const Badge = ({
+
+interface BadgeProps {
+  containerStyles: string;
+  icon: React.ReactNode;
+  endCountNum: number;
+  endCountText?: string;
+  badgeText: string;
+}
+
+const Badge: React.FC<BadgeProps> = ({
   containerStyles,
   icon,
   endCountNum,

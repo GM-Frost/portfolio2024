@@ -11,7 +11,7 @@ import Devimg from "./Devimg";
 import Badge from "./Badge";
 import Socials from "./Socials";
 
-const Hero = () => {
+const Hero: React.FC = () => {
   return (
     <section className="py-12 xl:py-24 h-[84vh] xl:pt-28  bg-hero bg-no-repeat bg-bottom bg-cover dark:bg-none">
       <div className="container mx-auto">
