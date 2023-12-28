@@ -140,6 +140,42 @@ const skillData = [
   },
 ];
 
+const achievementData = [
+  {
+    title: "certifications",
+    data: [
+      {
+        icon: "",
+        name: "Data Structire & Algorithms",
+        institute: "FreeCodeCamp",
+      },
+      {
+        icon: "",
+        name: "Backend Development & API",
+        institute: "FreeCodeCamp",
+      },
+      {
+        icon: "",
+        name: "PCAP-Python Certified Associate",
+        institute: "Cisco - OpenEDG",
+      },
+    ],
+  },
+  {
+    title: "awards",
+    data: [
+      {
+        name: "Dean's Award",
+        institute: "Loyalist College",
+      },
+      {
+        name: "Honour's Award",
+        institute: "Leeds Beckett University",
+      },
+    ],
+  },
+];
+
 const About = () => {
   const getData = (arr, title) => {
     return arr.find((item) => item.title === title);
@@ -161,7 +197,7 @@ const About = () => {
           {/* Tabs */}
           <div className="flex-1">
             <Tabs defaultValue="personal">
-              <TabsList className="w-full grid xl:grid-cols-3 xl:max-w-[520px] xl:border dark:border-none">
+              <TabsList className="w-full grid xl:grid-cols-4 xl:max-w-[520px] xl:border dark:border-none">
                 <TabsTrigger className="w-[162px] xl:w-auto" value="personal">
                   Personal info
                 </TabsTrigger>
@@ -173,6 +209,12 @@ const About = () => {
                 </TabsTrigger>
                 <TabsTrigger className="w-[162px] xl:w-auto" value="skills">
                   Skills
+                </TabsTrigger>
+                <TabsTrigger
+                  className="w-[162px] xl:w-auto"
+                  value="achievements"
+                >
+                  Achievements
                 </TabsTrigger>
               </TabsList>
               {/* Tabs Content */}
@@ -357,6 +399,58 @@ const About = () => {
                               </div>
                             );
                           })}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </TabsContent>
+
+                {/* Achievement INFO */}
+                <TabsContent value="achievements">
+                  <div className="text-center xl:text-left">
+                    <h3 className="h3 mb-8">Certification & Achievements</h3>
+                    {/* Achievement */}
+                    <div className="mb-16">
+                      <h4 className="text-xl font-semibold mb-2">
+                        Certifications
+                      </h4>
+                      <div className="border-b border-border mb-4"></div>
+                      {/* SKILLS LIST */}
+                      <div>
+                        {getData(achievementData, "certifications").data.map(
+                          (item, index) => {
+                            const { name, icon, institute } = item;
+                            return (
+                              <div key={index}>
+                                <div className="font-medium">
+                                  {name} &mdash;{" "}
+                                  <span className="subtitle">{institute}</span>
+                                </div>
+                              </div>
+                            );
+                          }
+                        )}
+                      </div>
+                    </div>
+                    {/* Awards */}
+                    <div>
+                      <h4 className="text-xl font-semibold mb-2 xl:text-left">
+                        Awards
+                      </h4>
+                      <div className="border-b border-border mb-4">
+                        {/* Tools List */}
+                        <div className="grid xl:grid-cols-2 justify-center xl:gap-x-8 xl:justify-start">
+                          {getData(achievementData, "awards").data.map(
+                            (item) => {
+                              const { name, institute } = item;
+                              return (
+                                <div key={name}>
+                                  {name} &mdash;{" "}
+                                  <span className="subtitle">{institute}</span>
+                                </div>
+                              );
+                            }
+                          )}
                         </div>
                       </div>
                     </div>
