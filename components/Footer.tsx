@@ -10,7 +10,7 @@ const Footer = () => {
           {/* Socials */}
           <Socials
             containerStyles="flex gap-x-6 mx-auto xl:mx-0 mb-4"
-            iconsStyles="text-primary text-[20px] dark:text-white/70 hover:text-white dark:hover:text-primary"
+            iconsStyles="text-primary text-[20px] dark:text-white/70 hover:text-white dark:hover:text-primary duration-300 transition-colors"
           />
           <div className="text-muted-foreground">
             Copyright &copy; {date} - Nayan Bastola.

@@ -3,31 +3,32 @@ import Image from "next/image";
 import { Card, CardHeader } from "./ui/card";
 import { GithubIcon, Link2Icon, PlayIcon } from "lucide-react";
 import { Badge } from "./ui/badge";
+import { Button } from "./ui/button";
+
 const ProjectCard = ({ project }) => {
-  console.log(project);
   return (
     <Card className="group overflow-hidden relative">
       <CardHeader className="p-0">
-        {/*Images*/}
-        <div className="relative w-full h-[300px] flex items-center justify-center bg-tertiary darl:bg-secondary/40 xl:bg-work_project_bg_light xl:dark:bg-work_project_bg_dark xl:bg-[110%] xl:bg-no-repeat overflow-hidden">
+        {/* Image */}
+        <div className="relative w-full h-[250px] flex items-center justify-center bg-tertiary dark:bg-secondary/40 xl:dark:bg-work_project_bg_dark xl:bg-work_project_bg_light xl:bg-[110%] xl:bg-no-repeat overflow-hidden">
           <Image
             className="absolute bottom-0 shadow-2xl"
-            src={project.image}
+            src="/work/1.png"
             width={245}
             height={250}
             alt=""
             priority
           />
-          {/*Buttons*/}
-          <div className="flex gap-x-4">
+          {/* Buttons */}
+          <div className="flex gap-x-8">
             <Link
-              href={project.link}
+              href="#"
               className="bg-secondary w-[54px] h-[54px] rounded-full flex justify-center items-center scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300"
             >
               <PlayIcon className="text-white" />
             </Link>
             <Link
-              href={project.github}
+              href="#"
               className="bg-secondary w-[54px] h-[54px] rounded-full flex justify-center items-center scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300"
             >
               <GithubIcon className="text-white" />
@@ -40,7 +41,12 @@ const ProjectCard = ({ project }) => {
           {project.category}
         </Badge>
         <h4 className="h4 mb-1">{project.name}</h4>
-        <p className="text-muted-foreground text-lg">{project.description}</p>
+        <p className="text-muted-foreground text-lg">
+          {project.description}
+          <span>
+            <Button variant="link">Read More...</Button>
+          </span>
+        </p>
       </div>
     </Card>
   );

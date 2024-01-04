@@ -13,7 +13,6 @@ export default function Home() {
       <Services />
       <Works />
       <ContactPage />
-      <Footer />
     </main>
   );
 }
