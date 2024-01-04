@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Card, CardHeader } from "./ui/card";
-import { GithubIcon, Link2Icon, PlayIcon } from "lucide-react";
+import { GithubIcon, PlayIcon } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
@@ -26,13 +26,13 @@ const ProjectCard = ({ project }) => {
           {/* Buttons */}
           <div className="flex gap-x-8">
             <Link
-              href="#"
+              href={project?.projectUrl ? project.projectUrl : "#"}
               className="bg-secondary w-[54px] h-[54px] rounded-full flex justify-center items-center scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300"
             >
               <PlayIcon className="text-white hover:scale-125 transition-all duration-300" />
             </Link>
             <Link
-              href="#"
+              href={project?.githubURL ? project.githubURL : "#"}
               className="bg-secondary w-[54px] h-[54px] rounded-full flex justify-center items-center scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300"
             >
               <GithubIcon className="text-white hover:scale-125 transition-all duration-300" />

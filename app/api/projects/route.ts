@@ -9,7 +9,7 @@ const query = groq`*[_type=="project"]{
     name,
   "slug":slug.current,
   category,
-    projectURL,
+  projectURL,
     githubURL,
     "image":image.asset->url,
     description,
