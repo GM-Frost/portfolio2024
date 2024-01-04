@@ -34,3 +34,14 @@ export interface IProject extends SanityBody {
   technologies: Technology[];
   // content: PortableTextBlock[];
 }
+
+export interface IExperience extends SanityBody {
+  company: string;
+  title: string;
+  companyimg: Image;
+  startDate: string;
+  endDate: string;
+  currentlyWorking: boolean;
+  responsibilities: PortableTextBlock[];
+  technologies: Technology[];
+}

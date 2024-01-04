@@ -4,22 +4,23 @@ import { groq } from "next-sanity";
 import { NextResponse } from "next/server";
 
 const query = groq`*[_type=="project"]{
-    _id,
-    _createdAt,
-    name,
-  "slug":slug.current,
+  _id,
+  _createdAt,
+  name,
+  "slug": slug.current,
   category,
-  projectURL,
-    githubURL,
-    "image":image.asset->url,
-    description,
-    "technologies":technologies[]-> {
-      _id,
-      title,
-      progress,
-      "image": image.asset->url,
-    }
-  }`;
+  projectUrl,
+  githubUrl,
+  "image": image.asset->url,
+  description,
+  "technologies": technologies[]-> {
+    _id,
+    title,
+    progress,
+    "image": image.asset->url,
+  }
+}
+`;
 
 type Data = {
   projects: IProject[];

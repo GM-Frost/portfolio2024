@@ -1,4 +1,4 @@
-import { GanttChartSquare, Blocks, Gem } from "lucide-react";
+import { TabletSmartphone, Combine, Gem } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -9,13 +9,13 @@ import {
 
 const servicesData = [
   {
-    icon: <GanttChartSquare size={72} strokeWidth={0.8} />,
+    icon: <TabletSmartphone size={72} strokeWidth={0.8} />,
     title: "UX Design",
     description:
       "I help our clients create brands, build digital products and services, innovate, find opportunities and validate ideas",
   },
   {
-    icon: <Blocks size={72} strokeWidth={0.8} />,
+    icon: <Combine size={72} strokeWidth={0.8} />,
     title: "UI Development",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quibusdam!",

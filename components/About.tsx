@@ -1,3 +1,4 @@
+"use client";
 import Devimg from "./Devimg";
 import Image from "next/image";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -10,6 +11,10 @@ import {
   Calendar,
   Briefcase,
 } from "lucide-react";
+import { useEffect, useState } from "react";
+import { IExperience } from "@/typings";
+import { fetchExperience } from "@/utils/fetchExperience";
+import Loader from "./Loader";
 
 const infoData = [
   {
@@ -177,6 +182,32 @@ const achievementData = [
 ];
 
 const About = () => {
+  const [experiences, setExperiences] = useState<IExperience[]>([]);
+
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const experienceData: IExperience[] = await fetchExperience();
+        setExperiences([...experienceData]);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching projects", error);
+        setLoading(true);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const getYearMonth = (date: string) => {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = d.toLocaleString("default", { month: "long" });
+    return `${month} ${year}`;
+  };
   const getData = (arr, title) => {
     return arr.find((item) => item.title === title);
   };
@@ -267,40 +298,49 @@ const About = () => {
                         <div className="flex gap-x-4 items-center text-[22px] text-primary">
                           <Briefcase />
                           <h4 className="capitalize font-semibold">
-                            {getData(qualificationData, "experience").title}
+                            Experience
                           </h4>
                         </div>
                         {/* Experience List*/}
                         <div>
-                          {getData(qualificationData, "experience").data.map(
-                            (item, index) => {
-                              const { company, role, fromDate, toDate, icon } =
-                                item;
+                          {loading ? (
+                            <div className="text-center flex items-center justify-center mt-10">
+                              <Loader />
+                            </div>
+                          ) : (
+                            experiences.map((experience) => {
                               return (
-                                <div className="flex gap-x-5 group" key={index}>
+                                <div
+                                  className="flex gap-x-5 group"
+                                  key={experience._id}
+                                >
                                   <div className="h-[84px] w-[1px] bg-border relative ml-2">
                                     <div className="w-[11px] h-[11px] rounded-full bg-primary absolute -left-[5px] group-hover:translate-y-[84px] transition-all duration-500"></div>
                                   </div>
                                   <img
-                                    src={icon}
-                                    alt={company}
+                                    src={experience.companyimg}
+                                    alt={experience.company}
                                     className="w-8 h-8 object-contain rounded-full items-center justify-center"
                                   />
                                   <div className="my-2">
                                     <div className="font-semibold text-xl leading-none mb-2">
-                                      {company}
+                                      {experience.company}
                                     </div>
 
                                     <div className="text-lg leading-none text-muted-foreground mb-3">
-                                      {role}
+                                      {experience.title}
                                     </div>
                                     <div className="text-base font-medium">
-                                      {fromDate}&nbsp;&ndash;&nbsp;{toDate}
+                                      {getYearMonth(experience.startDate)}
+                                      &nbsp;&ndash;&nbsp;
+                                      {experience?.currentlyWorking
+                                        ? "Present"
+                                        : getYearMonth(experience.endDate)}
                                     </div>
                                   </div>
                                 </div>
                               );
-                            }
+                            })
                           )}
                         </div>
                       </div>
