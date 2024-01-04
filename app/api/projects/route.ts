@@ -13,6 +13,12 @@ const query = groq`*[_type=="project"]{
     githubURL,
     "image":image.asset->url,
     description,
+    "technologies":technologies[]-> {
+      _id,
+      title,
+      progress,
+      "image": image.asset->url,
+    }
   }`;
 
 type Data = {

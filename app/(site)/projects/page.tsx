@@ -35,6 +35,7 @@ const Projects = () => {
     fetchData();
   }, []);
 
+  console.log(projectData);
   return (
     <section className="min-h-screen pt-12">
       <div className="container mx-auto">

@@ -16,12 +16,21 @@ interface Image {
   };
 }
 
+interface Technology {
+  _id: string;
+  title: string;
+  progress: number;
+  image: string;
+}
+
 export interface IProject extends SanityBody {
   name: string;
   slug: string;
-  image: string;
+  image: Image;
   category: string;
   projectURL: string;
   githubURL: string;
-  content: PortableTextBlock[];
+  description: string; // Assuming description is a string
+  technologies: Technology[];
+  // content: PortableTextBlock[];
 }

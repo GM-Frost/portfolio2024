@@ -58,6 +58,12 @@ const project = {
       title: "Description",
       type: "text",
     },
+    {
+      name: "technologies",
+      title: "Technologies",
+      type: "array",
+      of: [{ type: "reference", to: { type: "techtools" } }],
+    },
     // {
     //   name: "content",
     //   title: "Content",

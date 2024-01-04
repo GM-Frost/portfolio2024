@@ -4,6 +4,7 @@ import { Card, CardHeader } from "./ui/card";
 import { GithubIcon, Link2Icon, PlayIcon } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 const ProjectCard = ({ project }) => {
   const maxLength = 200;
@@ -28,13 +29,13 @@ const ProjectCard = ({ project }) => {
               href="#"
               className="bg-secondary w-[54px] h-[54px] rounded-full flex justify-center items-center scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300"
             >
-              <PlayIcon className="text-white" />
+              <PlayIcon className="text-white hover:scale-125 transition-all duration-300" />
             </Link>
             <Link
               href="#"
               className="bg-secondary w-[54px] h-[54px] rounded-full flex justify-center items-center scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300"
             >
-              <GithubIcon className="text-white" />
+              <GithubIcon className="text-white hover:scale-125 transition-all duration-300" />
             </Link>
           </div>
         </div>
@@ -43,6 +44,15 @@ const ProjectCard = ({ project }) => {
         <Badge className="uppercase text-sm font-medium mb-2 absolute top-4 left-5">
           {project.category}
         </Badge>
+        <div className="flex gap-2 justify-end items-center">
+          {project?.technologies?.slice(0, 5).map((tech: any) => (
+            <Avatar className="">
+              <AvatarImage src={tech.image} />
+              <AvatarFallback>T</AvatarFallback>
+            </Avatar>
+          ))}
+        </div>
+
         <h4 className="h4 mb-1">{project.name}</h4>
         <p className="text-muted-foreground text-lg">
           {truncatedDescription}...
