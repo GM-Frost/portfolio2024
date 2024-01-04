@@ -1,10 +1,10 @@
-import { Project } from "@/typings";
+import { IProject } from "@/typings";
 
 export const fetchProjects = async () => {
   //calling out the backend
-  const res = await fetch(`http://localhost:3000/api/projects`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/projects`);
   const data = await res.json();
-  const projects: Project[] = data.projects;
+  const projects: IProject[] = data.projects;
 
   return projects;
 };

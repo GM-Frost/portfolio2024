@@ -1,5 +1,5 @@
 import { sanityClient } from "@/app/lib/sanity";
-import { Project } from "@/typings";
+import { IProject } from "@/typings";
 import { groq } from "next-sanity";
 import { NextResponse } from "next/server";
 
@@ -11,15 +11,16 @@ const query = groq`*[_type=="project"]{
   category,
     projectURL,
     githubURL,
-    "image":image.asset->url
+    "image":image.asset->url,
+    description,
   }`;
 
 type Data = {
-  projects: Project[];
+  projects: IProject[];
 };
 
 export async function GET() {
-  const projects: Project[] = await sanityClient.fetch(query);
+  const projects: IProject[] = await sanityClient.fetch(query);
   return NextResponse.json({
     projects,
   });

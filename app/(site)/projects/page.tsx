@@ -4,18 +4,18 @@ import ProjectCard from "@/components/ProjectCard";
 import { useEffect, useState } from "react";
 import { TabsContent } from "@radix-ui/react-tabs";
 import { fetchProjects } from "@/utils/fetchProjects";
-import { Project } from "@/typings";
+import { IProject } from "@/typings";
 
 const Projects = () => {
   const [categories, setCategories] = useState<string[]>([]);
-  const [projectData, setProjectData] = useState<Project[]>([]);
+  const [projectData, setProjectData] = useState<IProject[]>([]);
   const [project, setProject] = useState<string>("all projects");
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const allProjects: Project[] = await fetchProjects();
+        const allProjects: IProject[] = await fetchProjects();
         const uniqueCategories = [
           "all projects",
           ...(Array.from(

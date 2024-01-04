@@ -54,11 +54,16 @@ const project = {
       type: "url",
     },
     {
-      name: "content",
-      title: "Content",
-      type: "array",
-      of: [{ type: "block" }],
+      name: "description",
+      title: "Description",
+      type: "text",
     },
+    // {
+    //   name: "content",
+    //   title: "Content",
+    //   type: "array",
+    //   of: [{ type: "block" }],
+    // },
   ],
 };
 

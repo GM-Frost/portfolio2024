@@ -16,7 +16,7 @@ interface Image {
   };
 }
 
-export interface Project extends SanityBody {
+export interface IProject extends SanityBody {
   name: string;
   slug: string;
   image: string;

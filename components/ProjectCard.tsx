@@ -6,6 +6,9 @@ import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 
 const ProjectCard = ({ project }) => {
+  const maxLength = 200;
+  const truncatedDescription = project.description.slice(0, maxLength);
+
   return (
     <Card className="group overflow-hidden relative">
       <CardHeader className="p-0">
@@ -13,10 +16,10 @@ const ProjectCard = ({ project }) => {
         <div className="relative w-full h-[250px] flex items-center justify-center bg-tertiary dark:bg-secondary/40 xl:dark:bg-work_project_bg_dark xl:bg-work_project_bg_light xl:bg-[110%] xl:bg-no-repeat overflow-hidden">
           <Image
             className="absolute bottom-0 shadow-2xl"
-            src="/work/1.png"
+            src={project.image}
             width={245}
             height={250}
-            alt=""
+            alt={project.name}
             priority
           />
           {/* Buttons */}
@@ -42,9 +45,9 @@ const ProjectCard = ({ project }) => {
         </Badge>
         <h4 className="h4 mb-1">{project.name}</h4>
         <p className="text-muted-foreground text-lg">
-          {project.description}
+          {truncatedDescription}...
           <span>
-            <Button variant="link">Read More...</Button>
+            <Button variant="link">Read More</Button>
           </span>
         </p>
       </div>
