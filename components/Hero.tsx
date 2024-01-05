@@ -26,6 +26,7 @@ import {
 
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import DownloadDialog from "./DownloadDialog";
 
 const Hero: React.FC = () => {
   const [personalInfo, setPersonalInfo] = useState<IPersonalInfo | undefined>();
@@ -67,51 +68,7 @@ const Hero: React.FC = () => {
                   Contact Me <Send size={18} />
                 </Button>
               </Link>
-
-              <Dialog>
-                <DialogTrigger>
-                  <button className="flex gap-x-2 h-14 items-center justify-center w-full md:w-[150px] bg-secondary hover:bg-secondary/90 text-white font-bold py-2 px-4 rounded-full">
-                    Resume <Download size={18} />
-                  </button>
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>Download the CV Format</DialogTitle>
-                    <DialogDescription className="grid grid-cols-2 justify-center items-center">
-                      <Link
-                        href={
-                          personalInfo?.resumeDoc ? personalInfo.resumeDoc : "#"
-                        }
-                        className="hover:text-primary"
-                      >
-                        <Image
-                          width={100}
-                          height={100}
-                          src={"/wordIcon.svg"}
-                          alt="word icon"
-                          priority
-                        />
-                        <p>Download</p>
-                      </Link>
-                      <Link
-                        href={
-                          personalInfo?.resumePDF ? personalInfo.resumePDF : "#"
-                        }
-                        className="hover:text-primary"
-                      >
-                        <Image
-                          width={100}
-                          height={100}
-                          src={"/pdfIcon.svg"}
-                          alt="word icon"
-                          priority
-                        />
-                        <p>Download</p>
-                      </Link>
-                    </DialogDescription>
-                  </DialogHeader>
-                </DialogContent>
-              </Dialog>
+              <DownloadDialog personalInfo={personalInfo} />
             </div>
             {/* Socials */}
             <Socials
