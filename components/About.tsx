@@ -12,10 +12,36 @@ import {
   Briefcase,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { IExperience } from "@/typings";
+import {
+  IAwards,
+  ICertificate,
+  IExperience,
+  ISkills,
+  ITechTools,
+} from "@/typings";
 import { fetchExperience } from "@/utils/fetchExperience";
 import Loader from "./Loader";
 
+import { fetchAwards } from "@/utils/fetchAwards";
+import { fetchCertificate } from "@/utils/fetchCertificate";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { fetchSkills } from "@/utils/fetchSkills";
+
+import "swiper/css";
+import "swiper/css/grid";
+import "swiper/css/pagination";
+
+//Importing Required modules
+import { Grid, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip";
+import { fetchTools } from "@/utils/fetchTools";
 const infoData = [
   {
     icon: <User2 size={20} />,
@@ -69,35 +95,6 @@ const qualificationData = [
       },
     ],
   },
-  {
-    title: "experience",
-    data: [
-      {
-        company: "NCR Corporation",
-        icon: "https://upload.wikimedia.org/wikipedia/commons/b/b1/NCR_Corporation_logo.svg",
-        role: "Full Stack Developer",
-        fromDate: "April 2023",
-        toDate: "Present",
-        location: "Remote",
-      },
-      {
-        company: "Yamaha Motors Canada",
-        icon: "https://i.ebayimg.com/images/g/8vsAAOSwctJb~DWO/s-l1600.gif",
-        role: "Full Stack Developer",
-        fromDate: "February 2021",
-        toDate: "April 2023",
-        location: "Toronto, ON, Canada",
-      },
-      {
-        company: "Ananda Adventure & Treks",
-        icon: "https://www.onlinelogomaker.com/blog/wp-content/uploads/2017/07/hiking-logo-design-768x614.jpg",
-        role: "Full Stack Developer",
-        fromDate: "June 2018",
-        toDate: "December 2020",
-        location: "Remote",
-      },
-    ],
-  },
 ];
 
 const skillData = [
@@ -145,45 +142,14 @@ const skillData = [
   },
 ];
 
-const achievementData = [
-  {
-    title: "certifications",
-    data: [
-      {
-        icon: "",
-        name: "Data Structire & Algorithms",
-        institute: "FreeCodeCamp",
-      },
-      {
-        icon: "",
-        name: "Backend Development & API",
-        institute: "FreeCodeCamp",
-      },
-      {
-        icon: "",
-        name: "PCAP-Python Certified Associate",
-        institute: "Cisco - OpenEDG",
-      },
-    ],
-  },
-  {
-    title: "awards",
-    data: [
-      {
-        name: "Dean's Award",
-        institute: "Loyalist College",
-      },
-      {
-        name: "Honour's Award",
-        institute: "Leeds Beckett University",
-      },
-    ],
-  },
-];
-
 const About = () => {
   const [experiences, setExperiences] = useState<IExperience[]>([]);
-
+  const [allCertifications, setAllCertifications] = useState<ICertificate[]>(
+    []
+  );
+  const [awards, setAwards] = useState<IAwards[]>([]);
+  const [skills, setSkills] = useState<ISkills[]>([]);
+  const [techTools, setTechTools] = useState<ITechTools[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -194,12 +160,80 @@ const About = () => {
         setExperiences([...experienceData]);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching projects", error);
+        console.error("Error fetching Experience", error);
         setLoading(true);
       }
     };
 
     fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchAwardsData = async () => {
+      setLoading(true);
+      try {
+        const awardsData: IAwards[] = await fetchAwards();
+        setAwards([...awardsData]);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching Awards", error);
+        setLoading(true);
+      }
+    };
+
+    fetchAwardsData();
+  }, []);
+
+  useEffect(() => {
+    const fetchCertificatesData = async () => {
+      setLoading(true);
+      try {
+        const certiData: ICertificate[] = await fetchCertificate();
+        if (certiData) {
+          setAllCertifications([...certiData]);
+        } else {
+          console.error("Received undefined data from the API");
+        }
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching certificates", error);
+        setLoading(false);
+      }
+    };
+
+    fetchCertificatesData();
+  }, []);
+
+  useEffect(() => {
+    const fetchSkillsData = async () => {
+      setLoading(true);
+      try {
+        const skillsData: ISkills[] = await fetchSkills();
+        setSkills([...skillsData]);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching Awards", error);
+        setLoading(true);
+      }
+    };
+
+    fetchSkillsData();
+  }, []);
+
+  useEffect(() => {
+    const fetchTechTools = async () => {
+      setLoading(true);
+      try {
+        const techToolsData: ITechTools[] = await fetchTools();
+        setTechTools([...techToolsData]);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching Awards", error);
+        setLoading(true);
+      }
+    };
+
+    fetchTechTools();
   }, []);
 
   const getYearMonth = (date: string) => {
@@ -402,21 +436,33 @@ const About = () => {
                       <div className="border-b border-border mb-4"></div>
                       {/* SKILLS LIST */}
                       <div>
-                        {getData(skillData, "skills").data.map(
-                          (item, index) => {
-                            const { name } = item;
-                            return (
-                              <div
-                                className="w-2/4 text-center xl:text-left mx-auto xl:mx-0"
-                                key={index}
-                              >
-                                <div className="font-medium">{name}</div>
-                              </div>
-                            );
-                          }
-                        )}
+                        <div className="grid grid-cols-2 text-center xl:text-left mx-auto xl:mx-0">
+                          {skills.map((skill) => (
+                            <div className="font-medium" key={skill._id}>
+                              <TooltipProvider>
+                                <Tooltip>
+                                  <TooltipTrigger>
+                                    {skill.skilltitle}
+                                  </TooltipTrigger>
+                                  <TooltipContent>
+                                    <p>
+                                      {skill.techtools.map((tech, index) => (
+                                        <ul key={index}>
+                                          <li className="font-medium text-primary">
+                                            {tech.tools}
+                                          </li>
+                                        </ul>
+                                      ))}
+                                    </p>
+                                  </TooltipContent>
+                                </Tooltip>
+                              </TooltipProvider>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
+
                     {/* Tools */}
                     <div>
                       <h4 className="text-xl font-semibold mb-2 xl:text-left">
@@ -424,21 +470,41 @@ const About = () => {
                       </h4>
                       <div className="border-b border-border mb-4">
                         {/* Tools List */}
-                        <div className="flex gap-x-8 justify-center xl:justify-start">
-                          {getData(skillData, "tools").data.map((item) => {
-                            const { imgPath, name } = item;
-                            return (
-                              <div key={name}>
-                                <Image
-                                  src={imgPath}
-                                  alt={name}
-                                  width={48}
-                                  height={48}
-                                  priority
-                                />
-                              </div>
-                            );
-                          })}
+                        {/* Slider */}
+                        <div className="xl:max-w-[1000px] xl:absolute right-0 top-0">
+                          <Swiper
+                            className="h-[150px]"
+                            slidesPerView={8}
+                            breakpoints={{
+                              640: {
+                                slidesPerView: 8,
+                              },
+                              1200: {
+                                slidesPerView: 8,
+                              },
+                            }}
+                            spaceBetween={5}
+                            modules={[Pagination]}
+                            pagination={{
+                              clickable: true,
+                            }}
+                          >
+                            {techTools.map((tool) => {
+                              return (
+                                <SwiperSlide key={tool._id}>
+                                  <div key={tool._id}>
+                                    <Image
+                                      src={tool.image}
+                                      alt={tool.title}
+                                      width={48}
+                                      height={48}
+                                      priority
+                                    />
+                                  </div>
+                                </SwiperSlide>
+                              );
+                            })}
+                          </Swiper>
                         </div>
                       </div>
                     </div>
@@ -457,19 +523,22 @@ const About = () => {
                       <div className="border-b border-border mb-4"></div>
                       {/* SKILLS LIST */}
                       <div>
-                        {getData(achievementData, "certifications").data.map(
-                          (item, index) => {
-                            const { name, icon, institute } = item;
-                            return (
-                              <div key={index}>
-                                <div className="font-medium">
-                                  {name} &mdash;{" "}
-                                  <span className="subtitle">{institute}</span>
-                                </div>
+                        {allCertifications.map((certificate) => (
+                          <>
+                            <div key={certificate._id}>
+                              <div className="font-medium flex gap-x-5 justify-center">
+                                <Avatar className="h-8 w-8">
+                                  <AvatarImage src={certificate.image} />
+                                  <AvatarFallback>T</AvatarFallback>
+                                </Avatar>
+                                {certificate.certificatetitle} &mdash;{" "}
+                                <span className="subtitle">
+                                  {certificate.issuingbody}
+                                </span>
                               </div>
-                            );
-                          }
-                        )}
+                            </div>
+                          </>
+                        ))}
                       </div>
                     </div>
                     {/* Awards */}
@@ -480,16 +549,21 @@ const About = () => {
                       <div className="border-b border-border mb-4">
                         {/* Tools List */}
                         <div className="grid xl:grid-cols-2 justify-center xl:gap-x-8 xl:justify-start">
-                          {getData(achievementData, "awards").data.map(
-                            (item) => {
-                              const { name, institute } = item;
-                              return (
-                                <div key={name}>
-                                  {name} &mdash;{" "}
-                                  <span className="subtitle">{institute}</span>
+                          {!loading && awards.length === 0 ? (
+                            <div className="text-center flex items-center justify-center mt-10">
+                              <Loader />
+                            </div>
+                          ) : (
+                            <>
+                              {awards.map((award) => (
+                                <div key={award._id}>
+                                  {award.awardtitle} &mdash;{" "}
+                                  <span className="subtitle">
+                                    {award.awardingbody}
+                                  </span>
                                 </div>
-                              );
-                            }
+                              ))}
+                            </>
                           )}
                         </div>
                       </div>

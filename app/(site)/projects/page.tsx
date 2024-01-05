@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { TabsContent } from "@radix-ui/react-tabs";
 import { fetchProjects } from "@/utils/fetchProjects";
 import { IProject } from "@/typings";
+import Loader from "@/components/Loader";
 
 const Projects = () => {
   const [categories, setCategories] = useState<string[]>([]);
@@ -42,7 +43,11 @@ const Projects = () => {
           My Projects
         </h2>
 
-        {loading && <div className="text-center">Loading...</div>}
+        {loading && (
+          <div className="text-center">
+            <Loader />
+          </div>
+        )}
         {/* Tabs */}
         <Tabs defaultValue={project} className="mb-24 xl:mb-48">
           <TabsList className="w-full grid h-full md:grid-cols-5 lg:max-w-[640px] mb-12 mx-auto md:border dark:border-none">

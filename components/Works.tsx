@@ -13,7 +13,6 @@ import ProjectCard from "./ProjectCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 //getting sanity project data
-import { getProjects } from "@/sanity/sanity-utils";
 
 const projectData = [
   {
@@ -80,16 +79,25 @@ const Works = () => {
           </Link>
         </div>
         {/* Slider */}
-        <div className="xl:max-w-[1000px] xl:absolute right-0 top-0">
+        <div className="xl:max-w-[200px] xl:absolute right-0 top-0">
           <Swiper
-            className="h-[480px]"
-            slidesPerView={1}
+            className="h-[150px]"
+            slidesPerView={5}
             breakpoints={{
               640: {
                 slidesPerView: 2,
               },
+              768: {
+                slidesPerView: 3,
+              },
+              1024: {
+                slidesPerView: 4,
+              },
+              1400: {
+                slidesPerView: 5,
+              },
             }}
-            spaceBetween={30}
+            spaceBetween={5}
             modules={[Pagination]}
             pagination={{
               clickable: true,

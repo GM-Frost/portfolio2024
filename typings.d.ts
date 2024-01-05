@@ -45,3 +45,29 @@ export interface IExperience extends SanityBody {
   responsibilities: PortableTextBlock[];
   technologies: Technology[];
 }
+
+export interface IAwards extends SanityBody {
+  awardtitle: string;
+  awardingbody: string;
+}
+
+export interface ICertificate {
+  _id: string;
+  issuingbody: string;
+  certificationurl: string;
+  image: string;
+  certificatedate: string;
+  certificatetitle: string;
+  _createdAt?: string;
+}
+
+export interface ISkills extends SanityBody {
+  skilltitle: string;
+  techtools: any[];
+}
+
+export interface ITechTools extends SanityBody {
+  title: string;
+  progress: number;
+  image: Image;
+}
