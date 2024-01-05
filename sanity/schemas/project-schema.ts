@@ -16,6 +16,12 @@ const project = {
       options: { source: "name" },
     },
     {
+      name: "completionDate",
+      title: "Completion Date",
+      description: "Date of Completion",
+      type: "date",
+    },
+    {
       name: "image",
       title: "Image",
       type: "image",

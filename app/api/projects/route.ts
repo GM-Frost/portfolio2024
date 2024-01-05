@@ -3,7 +3,7 @@ import { IProject } from "@/typings";
 import { groq } from "next-sanity";
 import { NextResponse } from "next/server";
 
-const query = groq`*[_type=="project"]{
+const query = groq`*[_type=="project"]|order(completionDate desc){
   _id,
   _createdAt,
   name,
@@ -13,6 +13,7 @@ const query = groq`*[_type=="project"]{
   githubUrl,
   "image": image.asset->url,
   description,
+  completionDate,
   "technologies": technologies[]-> {
     _id,
     title,

@@ -97,51 +97,6 @@ const qualificationData = [
   },
 ];
 
-const skillData = [
-  {
-    title: "skills",
-    data: [
-      {
-        icon: "",
-        name: "HTML CSS",
-      },
-      {
-        icon: "",
-        name: "Full Stack Development",
-      },
-      {
-        icon: "",
-        name: "Front-end Development",
-      },
-      {
-        icon: "",
-        name: "Database Development",
-      },
-    ],
-  },
-  {
-    title: "tools",
-    data: [
-      {
-        imgPath: "/about/vscode.svg",
-        name: "VSCode",
-      },
-      {
-        imgPath: "/about/figma.svg",
-        name: "Figma",
-      },
-      {
-        imgPath: "/about/notion.svg",
-        name: "Notion",
-      },
-      {
-        imgPath: "/about/wordpress.svg",
-        name: "Wordpress",
-      },
-    ],
-  },
-];
-
 const About = () => {
   const [experiences, setExperiences] = useState<IExperience[]>([]);
   const [allCertifications, setAllCertifications] = useState<ICertificate[]>(
@@ -475,7 +430,7 @@ const About = () => {
                             clickable: true,
                           }}
                           modules={[Grid, Pagination]}
-                          className="mySwiper h-[170px] max-w-[600px] mx-auto xl:mx-0"
+                          className="mySwiper cursor-pointer h-[170px] max-w-[600px] mx-auto xl:mx-0"
                           style={{ width: "100%" }}
                         >
                           {techTools.map((tools, index) => (
@@ -529,7 +484,7 @@ const About = () => {
                       </h4>
                       <div className="border-b border-border mb-4">
                         {/* Tools List */}
-                        <div className="grid xl:grid-cols-2 justify-center xl:gap-x-8 xl:justify-start">
+                        <div className="grid xl:grid-cols-2 mb-4 justify-center xl:gap-x-8 xl:justify-start">
                           {!loading && awards.length === 0 ? (
                             <div className="text-center flex items-center justify-center mt-10">
                               <Loader />

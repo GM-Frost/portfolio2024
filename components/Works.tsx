@@ -11,57 +11,74 @@ import { Pagination } from "swiper/modules";
 //Components
 import ProjectCard from "./ProjectCard";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useEffect, useState } from "react";
+import { IProject } from "@/typings";
+import { fetchProjects } from "@/utils/fetchProjects";
 
 //getting sanity project data
 
-const projectData = [
-  {
-    image: "/work/2.png",
-    category: "python",
-    name: "Gain Strom",
-    description:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    link: "/",
-    github: "/",
-  },
-  {
-    image: "/work/4.png",
-    category: "next js",
-    name: "Gym Website",
-    description:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    link: "/",
-    github: "/",
-  },
-  {
-    image: "/work/3.png",
-    category: "CSS Animation Effects",
-    name: "Somethign Else",
-    description:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    link: "/",
-    github: "/",
-  },
-  {
-    image: "/work/2.png",
-    category: "Django",
-    name: "Particules Website",
-    description:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    link: "/",
-    github: "/",
-  },
-  {
-    image: "/work/1.png",
-    category: "React",
-    name: "Food Website",
-    description:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    link: "/",
-    github: "/",
-  },
-];
+// const projectData = [
+//   {
+//     image: "/work/2.png",
+//     category: "python",
+//     name: "Gain Strom",
+//     description:
+//       "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+//     link: "/",
+//     github: "/",
+//   },
+//   {
+//     image: "/work/4.png",
+//     category: "next js",
+//     name: "Gym Website",
+//     description:
+//       "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+//     link: "/",
+//     github: "/",
+//   },
+//   {
+//     image: "/work/3.png",
+//     category: "CSS Animation Effects",
+//     name: "Somethign Else",
+//     description:
+//       "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+//     link: "/",
+//     github: "/",
+//   },
+//   {
+//     image: "/work/2.png",
+//     category: "Django",
+//     name: "Particules Website",
+//     description:
+//       "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+//     link: "/",
+//     github: "/",
+//   },
+//   {
+//     image: "/work/1.png",
+//     category: "React",
+//     name: "Food Website",
+//     description:
+//       "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+//     link: "/",
+//     github: "/",
+//   },
+// ];
 const Works = () => {
+  const [projects, setProjects] = useState<IProject[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const projectData: IProject[] = await fetchProjects();
+        setProjects([...projectData]);
+      } catch (error) {
+        console.error("Error fetching projects");
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <section className="relative mb-12 xl:mb-48">
       <div className="container mx-auto">
@@ -81,7 +98,7 @@ const Works = () => {
         {/* Slider */}
         <div className="xl:max-w-[1000px] xl:absolute right-0 top-0">
           <Swiper
-            className="h-[480px]"
+            className="h-[600px]"
             slidesPerView={1}
             breakpoints={{
               640: {
@@ -95,7 +112,7 @@ const Works = () => {
             }}
           >
             {/* Show only the first 4 projects for the slides */}
-            {projectData.slice(0, 4).map((project, index) => {
+            {projects.slice(0, 4).map((project, index) => {
               return (
                 <SwiperSlide key={index}>
                   <ProjectCard project={project} />

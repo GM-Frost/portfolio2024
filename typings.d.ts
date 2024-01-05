@@ -30,6 +30,7 @@ export interface IProject extends SanityBody {
   category: string;
   projectURL: string;
   githubURL: string;
+  completionDate: string;
   description: string; // Assuming description is a string
   technologies: Technology[];
   // content: PortableTextBlock[];
@@ -70,4 +71,16 @@ export interface ITechTools extends SanityBody {
   title: string;
   progress: number;
   image: Image;
+}
+
+export interface IPersonalInfo extends SanityBody {
+  phone: string;
+  resumePDF: string;
+  resumeDoc: string;
+  image: string;
+  name: string;
+  email: string;
+  address: string;
+  about: string;
+  socialLinks: SocialLink[];
 }

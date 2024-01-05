@@ -26,9 +26,9 @@ const Projects = () => {
 
         setCategories([...uniqueCategories]);
         setProjectData([...allProjects]);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching projects");
-      } finally {
         setLoading(false);
       }
     };
@@ -43,40 +43,47 @@ const Projects = () => {
           My Projects
         </h2>
 
-        {loading && (
-          <div className="text-center">
+        {loading && projectData.length === 0 ? (
+          <div className="flex w-full mx-auto justify-center text-center items-center">
             <Loader />
           </div>
+        ) : (
+          <>
+            {/* Tabs */}
+            <Tabs defaultValue={project} className="mb-24 xl:mb-48">
+              <TabsList className="w-full grid h-full md:grid-cols-5 lg:max-w-[640px] mb-12 mx-auto md:border dark:border-none">
+                {categories.map((category, index) => (
+                  <TabsTrigger
+                    onClick={() => setProject(category)}
+                    key={index}
+                    value={category}
+                    className="capitalize w-[162px] md:w-auto"
+                  >
+                    {category}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+              {/* tabs content */}
+              <div className="text-lg xl:mt-8 grid grid-cols-1 lg:grid-cols-3 gap-4">
+                {projectData
+                  .filter((filterData) =>
+                    project === "all projects"
+                      ? filterData
+                      : (filterData as { category: string }).category ===
+                        project
+                  )
+                  .map((projectItem, index) => (
+                    <TabsContent value={project} key={index}>
+                      <ProjectCard project={projectItem} />
+                    </TabsContent>
+                  ))}
+              </div>
+            </Tabs>
+            {projectData.length === 0 && !loading && (
+              <p className="text-center mt-8 text-xl">No Projects Found Here</p>
+            )}
+          </>
         )}
-        {/* Tabs */}
-        <Tabs defaultValue={project} className="mb-24 xl:mb-48">
-          <TabsList className="w-full grid h-full md:grid-cols-5 lg:max-w-[640px] mb-12 mx-auto md:border dark:border-none">
-            {categories.map((category, index) => (
-              <TabsTrigger
-                onClick={() => setProject(category)}
-                key={index}
-                value={category}
-                className="capitalize w-[162px] md:w-auto"
-              >
-                {category}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-          {/* tabs content */}
-          <div className="text-lg xl:mt-8 grid grid-cols-1 lg:grid-cols-3 gap-4">
-            {projectData
-              .filter((filterData) =>
-                project === "all projects"
-                  ? filterData
-                  : (filterData as { category: string }).category === project
-              )
-              .map((projectItem, index) => (
-                <TabsContent value={project} key={index}>
-                  <ProjectCard project={projectItem} />
-                </TabsContent>
-              ))}
-          </div>
-        </Tabs>
       </div>
     </section>
   );
