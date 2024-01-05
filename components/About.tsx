@@ -435,34 +435,29 @@ const About = () => {
                       <h4 className="text-xl font-semibold mb-2">Skills</h4>
                       <div className="border-b border-border mb-4"></div>
                       {/* SKILLS LIST */}
-                      <div>
-                        <div className="grid grid-cols-2 text-center xl:text-left mx-auto xl:mx-0">
-                          {skills.map((skill) => (
-                            <div className="font-medium" key={skill._id}>
-                              <TooltipProvider>
-                                <Tooltip>
-                                  <TooltipTrigger>
-                                    {skill.skilltitle}
-                                  </TooltipTrigger>
-                                  <TooltipContent>
-                                    <p>
-                                      {skill.techtools.map((tech, index) => (
-                                        <ul key={index}>
-                                          <li className="font-medium text-primary">
-                                            {tech.tools}
-                                          </li>
-                                        </ul>
-                                      ))}
-                                    </p>
-                                  </TooltipContent>
-                                </Tooltip>
-                              </TooltipProvider>
-                            </div>
-                          ))}
-                        </div>
+                      <div className="md:grid md:grid-cols-2">
+                        {skills.map((skill) => (
+                          <TooltipProvider key={skill._id}>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <div className="w-full font-medium cursor-pointer hover:text-primary text-center xl:text-left mx-auto xl:mx-0">
+                                  {skill.skilltitle}
+                                </div>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>
+                                  {skill.techtools.map((tech, index) => (
+                                    <div className="text-primary" key={index}>
+                                      {tech.tools}
+                                    </div>
+                                  ))}
+                                </p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
+                        ))}
                       </div>
                     </div>
-
                     {/* Tools */}
                     <div>
                       <h4 className="text-xl font-semibold mb-2 xl:text-left">
@@ -470,42 +465,28 @@ const About = () => {
                       </h4>
                       <div className="border-b border-border mb-4">
                         {/* Tools List */}
-                        {/* Slider */}
-                        <div className="xl:max-w-[1000px] xl:absolute right-0 top-0">
-                          <Swiper
-                            className="h-[150px]"
-                            slidesPerView={8}
-                            breakpoints={{
-                              640: {
-                                slidesPerView: 8,
-                              },
-                              1200: {
-                                slidesPerView: 8,
-                              },
-                            }}
-                            spaceBetween={5}
-                            modules={[Pagination]}
-                            pagination={{
-                              clickable: true,
-                            }}
-                          >
-                            {techTools.map((tool) => {
-                              return (
-                                <SwiperSlide key={tool._id}>
-                                  <div key={tool._id}>
-                                    <Image
-                                      src={tool.image}
-                                      alt={tool.title}
-                                      width={48}
-                                      height={48}
-                                      priority
-                                    />
-                                  </div>
-                                </SwiperSlide>
-                              );
-                            })}
-                          </Swiper>
-                        </div>
+                        <Swiper
+                          slidesPerView={5}
+                          grid={{
+                            rows: 2,
+                          }}
+                          spaceBetween={1}
+                          pagination={{
+                            clickable: true,
+                          }}
+                          modules={[Grid, Pagination]}
+                          className="mySwiper h-[170px] max-w-[600px] mx-auto xl:mx-0"
+                          style={{ width: "100%" }}
+                        >
+                          {techTools.map((tools, index) => (
+                            <SwiperSlide>
+                              <Avatar className="relative h-12 w-12 justify-center items-center">
+                                <AvatarImage src={tools.image} alt="@shadcn" />
+                                <AvatarFallback>T</AvatarFallback>
+                              </Avatar>
+                            </SwiperSlide>
+                          ))}
+                        </Swiper>
                       </div>
                     </div>
                   </div>
