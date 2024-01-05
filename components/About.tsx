@@ -1,6 +1,6 @@
 "use client";
 import Devimg from "./Devimg";
-import Image from "next/image";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   User2,
@@ -16,6 +16,7 @@ import {
   IAwards,
   ICertificate,
   IExperience,
+  IPersonalInfo,
   ISkills,
   ITechTools,
 } from "@/typings";
@@ -42,7 +43,10 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip";
 import { fetchTools } from "@/utils/fetchTools";
-const infoData = [
+
+import fetchPersonalInfo from "@/utils/fetchPersonalInfo";
+
+const defaultInfoData = [
   {
     icon: <User2 size={20} />,
     text: "Nayan Bastola",
@@ -61,7 +65,7 @@ const infoData = [
   },
   {
     icon: <GraduationCap size={20} />,
-    text: "Master in Computer Science",
+    text: "Post Graduate in Computer Science",
   },
   {
     icon: <HomeIcon size={20} />,
@@ -106,7 +110,8 @@ const About = () => {
   const [skills, setSkills] = useState<ISkills[]>([]);
   const [techTools, setTechTools] = useState<ITechTools[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-
+  const [personalInfos, setPersonalInfos] = useState<IPersonalInfo>();
+  const [infoData, setInfoData] = useState(defaultInfoData);
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -269,7 +274,7 @@ const About = () => {
                     <div className="flex flex-col gap-y-2">
                       <div>Language Skills</div>
                       <div className="border-b border-border">
-                        <div>English, Nepali, Japanese</div>
+                        <div>English, Nepali</div>
                       </div>
                     </div>
                   </div>

@@ -9,6 +9,11 @@ const personalInfo = {
       type: "string",
     },
     {
+      name: "jobtitle",
+      title: "Job Title",
+      type: "string",
+    },
+    {
       name: "email",
       title: "Email",
       type: "string",

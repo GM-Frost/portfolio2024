@@ -1,6 +1,7 @@
+"use client";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { Download, Send } from "lucide-react";
+import { Download, FileText, Send } from "lucide-react";
 import {
   RiBriefcase4Fill,
   RiTeamFill,
@@ -10,8 +11,38 @@ import {
 import Devimg from "./Devimg";
 import Badge from "./Badge";
 import Socials from "./Socials";
+import { useEffect, useState } from "react";
+import fetchPersonalInfo from "@/utils/fetchPersonalInfo";
+import { IPersonalInfo } from "@/typings";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
+import Image from "next/image";
+import dynamic from "next/dynamic";
 
 const Hero: React.FC = () => {
+  const [personalInfo, setPersonalInfo] = useState<IPersonalInfo | undefined>();
+
+  useEffect(() => {
+    const fetchInfomation = async () => {
+      try {
+        const response = await fetchPersonalInfo();
+        setPersonalInfo(response[0]);
+      } catch (error) {
+        console.error("Error fetching personal information:", error);
+      }
+    };
+
+    fetchInfomation();
+  }, []);
+
   return (
     <section className="py-12 xl:py-24 h-[84vh] xl:pt-28  bg-hero bg-no-repeat bg-bottom bg-cover dark:bg-none">
       <div className="container mx-auto">
@@ -19,7 +50,7 @@ const Hero: React.FC = () => {
           {/* TEXT */}
           <div className="flex max-w-[600px] flex-col justify-center mx-auto xl:mx-0 text-center xl:text-left">
             <div className="text-sm uppercase font-semibold mb-4 text-primary tracking-[4px]">
-              Full Stack Developer
+              {personalInfo ? personalInfo.jobtitle : "Full Stack Developer"}
             </div>
             <h1 className="h1  flex gap-x-1">
               Hello, I'm Nayan<span className="animate-bounce">👋</span>
@@ -37,9 +68,50 @@ const Hero: React.FC = () => {
                 </Button>
               </Link>
 
-              <Button variant="secondary" className="gap-x-2">
-                Resume <Download size={18} />
-              </Button>
+              <Dialog>
+                <DialogTrigger>
+                  <button className="flex gap-x-2 h-14 items-center justify-center w-full md:w-[150px] bg-secondary hover:bg-secondary/90 text-white font-bold py-2 px-4 rounded-full">
+                    Resume <Download size={18} />
+                  </button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Download the CV Format</DialogTitle>
+                    <DialogDescription className="grid grid-cols-2 justify-center items-center">
+                      <Link
+                        href={
+                          personalInfo?.resumeDoc ? personalInfo.resumeDoc : "#"
+                        }
+                        className="hover:text-primary"
+                      >
+                        <Image
+                          width={100}
+                          height={100}
+                          src={"/wordIcon.svg"}
+                          alt="word icon"
+                          priority
+                        />
+                        <p>Download</p>
+                      </Link>
+                      <Link
+                        href={
+                          personalInfo?.resumePDF ? personalInfo.resumePDF : "#"
+                        }
+                        className="hover:text-primary"
+                      >
+                        <Image
+                          width={100}
+                          height={100}
+                          src={"/pdfIcon.svg"}
+                          alt="word icon"
+                          priority
+                        />
+                        <p>Download</p>
+                      </Link>
+                    </DialogDescription>
+                  </DialogHeader>
+                </DialogContent>
+              </Dialog>
             </div>
             {/* Socials */}
             <Socials
@@ -75,7 +147,7 @@ const Hero: React.FC = () => {
             />
             <div className="bg-hero_shape2_light dark:bg-hero_shape2_dark w-[500px] h-[500px] bg-no-repeat absolute -top-1 -right-2">
               <Devimg
-                imgSrc="/hero/developer.png"
+                imgSrc={personalInfo?.image || "/hero/developer.png"}
                 containerStyles="bg-hero_share w-[510px] h-[462px] bg-no-repeat relative bg-bottom"
               />
             </div>

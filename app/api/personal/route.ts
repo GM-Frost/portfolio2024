@@ -11,6 +11,7 @@ const query = groq`
   "resumeDoc":docResume.asset->url,
   "image":profileImage.asset->url,
   name,
+  jobtitle,
     email,
     address,
     about,

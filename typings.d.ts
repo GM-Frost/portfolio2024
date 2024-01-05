@@ -73,9 +73,10 @@ export interface ITechTools extends SanityBody {
   image: Image;
 }
 
-export interface IPersonalInfo extends SanityBody {
+export interface IPersonalInfo {
   phone: string;
   resumePDF: string;
+  jobtitle: string;
   resumeDoc: string;
   image: string;
   name: string;
