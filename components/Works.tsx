@@ -86,10 +86,10 @@ const Works = () => {
         <div className="items-center max-w-[400px] mx-auto xl:mx-0 text-cetner xl:text-left mb-12 xl:h-[400px] flex flex-col justify-center xl:items-start">
           <h2 className="section-title mb-4">Recent Projects</h2>
           <p className="subtitle mb-8">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum
-            praesentium quia repudiandae, veniam adipisci dignissimos possimus
-            voluptas reprehenderit ullam. Aliquam itaque inventore fuga quae quo
-            minus quisquam deleniti eaque? Reiciendis.
+            Take a look at some of my recent endeavors that showcase my skills
+            and versatility as a Full Stack Developer. Each project reflects my
+            commitment to delivering high-quality solutions tailored to the
+            unique needs of clients.
           </p>
           <Link href="/projects">
             <Button>See All Projects</Button>

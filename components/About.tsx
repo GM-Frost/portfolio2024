@@ -52,10 +52,6 @@ const defaultInfoData = [
     text: "Nayan Bastola",
   },
   {
-    icon: <PhoneCall size={20} />,
-    text: "+1(437) 993-4636",
-  },
-  {
     icon: <MailIcon size={20} />,
     text: "nayanbastola111@gmail.com",
   },
@@ -215,10 +211,6 @@ const About = () => {
           {
             icon: <User2 size={20} />,
             text: response[0]?.name,
-          },
-          {
-            icon: <PhoneCall size={20} />,
-            text: response[0]?.phone,
           },
           {
             icon: <MailIcon size={20} />,

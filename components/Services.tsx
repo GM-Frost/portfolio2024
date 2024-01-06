@@ -1,4 +1,4 @@
-import { TabletSmartphone, Combine, Gem } from "lucide-react";
+import { TabletSmartphone, Combine, Gem, Workflow } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -12,19 +12,25 @@ const servicesData = [
     icon: <TabletSmartphone size={72} strokeWidth={0.8} />,
     title: "UX Design",
     description:
-      "I help our clients create brands, build digital products and services, innovate, find opportunities and validate ideas",
+      "I prioritize user experience in every project. I excel in designing intuitive and engaging user interfaces that enhance the overall usability of applications.",
   },
   {
     icon: <Combine size={72} strokeWidth={0.8} />,
     title: "UI Development",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quibusdam!",
+      "With a focus on creating visually appealing and responsive user interfaces, I specialize in turning design concepts into pixel-perfect, interactive interfaces that captivate users.",
   },
   {
     icon: <Gem size={72} strokeWidth={0.8} />,
     title: "App Development",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quibusdam!",
+      "From conceptualization to deployment, I am dedicated to crafting robust and scalable applications With expertise in both front-end and back-end technologies.",
+  },
+  {
+    icon: <Workflow size={72} strokeWidth={0.8} />,
+    title: "DevOps & CI/CD",
+    description:
+      "I implement DevOps practices and continuous integration/continuous deployment (CI/CD) pipelines to streamline development and deployment processes.",
   },
 ];
 const Services = () => {
@@ -35,7 +41,7 @@ const Services = () => {
           My Services
         </h2>
         {/* ITEMS */}
-        <div className="grid xl:grid-cols-3 justify-center gap-y-12 xl:gap-y-24 xl:gap-x-8">
+        <div className="grid xl:grid-cols-4 justify-center gap-y-12 xl:gap-y-24 xl:gap-x-8">
           {servicesData.map((item, index) => {
             return (
               <Card

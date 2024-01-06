@@ -33,6 +33,13 @@ const Hero: React.FC = () => {
     fetchInfomation();
   }, []);
 
+  const startDate = new Date("2018-06-01");
+  const endDate = new Date();
+  const timeDifference: number = endDate.getTime() - startDate.getTime();
+  const yearsDifference: number =
+    timeDifference / (1000 * 60 * 60 * 24 * 365.25);
+  const currentYears: number = Math.floor(yearsDifference);
+
   return (
     <section className="py-12 xl:py-24 h-[84vh] xl:pt-28  bg-hero bg-no-repeat bg-bottom bg-cover dark:bg-none">
       <div className="container mx-auto">
@@ -73,7 +80,7 @@ const Hero: React.FC = () => {
             <Badge
               containerStyles="absolute top-[24%] right-[25rem]"
               icon={<RiBriefcase4Fill />}
-              endCountNum={5}
+              endCountNum={currentYears}
               badgeText="years of experience"
             />
             {/* Badge 2*/}

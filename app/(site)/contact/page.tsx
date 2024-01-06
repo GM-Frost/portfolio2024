@@ -1,5 +1,6 @@
 import Form from "@/components/Form";
-import { MailIcon, HomeIcon, PhoneCall } from "lucide-react";
+import { MailIcon, HomeIcon } from "lucide-react";
+
 const Contact = () => {
   return (
     <div className="container mx-auto">
@@ -13,10 +14,10 @@ const Contact = () => {
           </div>
           <h1 className="h1 max-w-md mb-8">Let's work together</h1>
           <p className="subtitle max-w-[400px]">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos ut
-            quas vel, quisquam sequi commodi quam asperiores modi facere ipsa
-            temporibus eligendi atque veniam distinctio adipisci rem
-            voluptatibus ipsam eum.
+            I'm excited about the possibility of collaborating with you on your
+            next project. Whether you need a Developer to bring your vision to
+            life or enhance your existing applications, I'm here to help. Feel
+            free to reach out, and let's create something amazing together!
           </p>
         </div>
         {/* Image */}
@@ -37,10 +38,6 @@ const Contact = () => {
             <div>Toronto, ON, Canada</div>
           </div>
           {/* Mail */}
-          <div className="flex items-center gap-x-8">
-            <PhoneCall size={18} className="text-primary" />
-            <div>+1 (437) 993-4636</div>
-          </div>
         </div>
         {/* Form */}
         <Form />
