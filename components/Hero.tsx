@@ -15,21 +15,10 @@ import { useEffect, useState } from "react";
 import fetchPersonalInfo from "@/utils/fetchPersonalInfo";
 import { IPersonalInfo } from "@/typings";
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-
-import Image from "next/image";
-import dynamic from "next/dynamic";
 import DownloadDialog from "./DownloadDialog";
 
 const Hero: React.FC = () => {
-  const [personalInfo, setPersonalInfo] = useState<IPersonalInfo | undefined>();
+  const [personalInfo, setPersonalInfo] = useState<IPersonalInfo>();
 
   useEffect(() => {
     const fetchInfomation = async () => {
@@ -105,7 +94,7 @@ const Hero: React.FC = () => {
             <div className="bg-hero_shape2_light dark:bg-hero_shape2_dark w-[500px] h-[500px] bg-no-repeat absolute -top-1 -right-2">
               <Devimg
                 imgSrc={personalInfo?.image || "/hero/developer.png"}
-                containerStyles="bg-hero_share w-[510px] h-[462px] bg-no-repeat relative bg-bottom"
+                containerStyles="bg-hero_share w-[510px] h-[462px] -left-12 bg-no-repeat relative bg-bottom"
               />
             </div>
           </div>

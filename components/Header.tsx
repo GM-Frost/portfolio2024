@@ -31,7 +31,7 @@ const Header = () => {
           : "py-6 dark:bg-transparent"
       }
       sticky top-0 z-30 transition-all duration-300
-      ${pathname === "/" && "bg-[#fef9f5]"}
+      ${pathname === "/" && "bg-white"}
     `}
     >
       <div className="container mx-auto">

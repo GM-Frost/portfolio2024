@@ -11,7 +11,7 @@ const ProjectCard = ({ project }) => {
   const truncatedDescription = project.description.slice(0, maxLength);
 
   return (
-    <Card className="group overflow-hidden relative">
+    <Card className="group overflow-hidden relative" key={project._id}>
       <CardHeader className="p-0">
         {/* Image */}
         <div className="relative w-full h-[250px] flex items-center justify-center bg-tertiary dark:bg-secondary/40 xl:dark:bg-work_project_bg_dark xl:bg-work_project_bg_light xl:bg-[110%] xl:bg-no-repeat overflow-hidden">
@@ -48,7 +48,7 @@ const ProjectCard = ({ project }) => {
         </Badge>
         <div className="flex gap-2 justify-end items-center">
           {project?.technologies?.slice(0, 5).map((tech: any) => (
-            <Avatar className="">
+            <Avatar key={tech._id}>
               <AvatarImage src={tech.image} />
               <AvatarFallback>T</AvatarFallback>
             </Avatar>

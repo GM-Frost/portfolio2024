@@ -53,7 +53,7 @@ const defaultInfoData = [
   },
   {
     icon: <PhoneCall size={20} />,
-    text: "+1(437)993-4636",
+    text: "+1(437) 993-4636",
   },
   {
     icon: <MailIcon size={20} />,
@@ -110,8 +110,10 @@ const About = () => {
   const [skills, setSkills] = useState<ISkills[]>([]);
   const [techTools, setTechTools] = useState<ITechTools[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [personalInfos, setPersonalInfos] = useState<IPersonalInfo>();
+  const [personalInfo, setPersonalInfo] = useState<IPersonalInfo>();
+
   const [infoData, setInfoData] = useState(defaultInfoData);
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -196,6 +198,48 @@ const About = () => {
     fetchTechTools();
   }, []);
 
+  useEffect(() => {
+    const fetchInfomation = async () => {
+      try {
+        const response = await fetchPersonalInfo();
+        setPersonalInfo(response[0]);
+
+        const updateInfoData = [
+          {
+            icon: <User2 size={20} />,
+            text: response[0]?.name,
+          },
+          {
+            icon: <PhoneCall size={20} />,
+            text: response[0]?.phone,
+          },
+          {
+            icon: <MailIcon size={20} />,
+            text: response[0]?.email,
+          },
+          {
+            icon: <Calendar size={20} />,
+            text: "DOB: April 30",
+          },
+          {
+            icon: <GraduationCap size={20} />,
+            text: "Post Graduate in Computer Science",
+          },
+          {
+            icon: <HomeIcon size={20} />,
+            text: response[0]?.address,
+          },
+        ];
+
+        setInfoData(updateInfoData);
+      } catch (error) {
+        console.error("Error fetching personal information:", error);
+      }
+    };
+
+    fetchInfomation();
+  }, []);
+
   const getYearMonth = (date: string) => {
     const d = new Date(date);
     const year = d.getFullYear();
@@ -250,11 +294,7 @@ const About = () => {
                       Deliver quality for over 15 years{" "}
                     </h3>
                     <p className="subtitle max-w-xl mx-auto xl:mx-0">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Minus amet ipsam at provident repellendus illo velit
-                      cupiditate fuga praesentium, incidunt, eveniet placeat
-                      reprehenderit eos ipsa doloremque sint asperiores deleniti
-                      blanditiis.
+                      {personalInfo?.about}
                     </p>
                     {/* Icons */}
                     <div className="grid xl:grid-cols-2 gap-4 mb-12">
@@ -305,8 +345,8 @@ const About = () => {
                             experiences.map((experience) => {
                               return (
                                 <div
-                                  className="flex gap-x-5 group"
                                   key={experience._id}
+                                  className="flex gap-x-5 group"
                                 >
                                   <div className="h-[84px] w-[1px] bg-border relative ml-2">
                                     <div className="w-[11px] h-[11px] rounded-full bg-primary absolute -left-[5px] group-hover:translate-y-[84px] transition-all duration-500"></div>
@@ -357,7 +397,7 @@ const About = () => {
                                 location,
                               } = item;
                               return (
-                                <div className="flex gap-x-5 group" key={index}>
+                                <div key={index} className="flex gap-x-5 group">
                                   <div className="h-[120px] w-[1px] bg-border relative ml-2">
                                     <div className="w-[11px] h-[11px] rounded-full bg-primary absolute -left-[5px] group-hover:translate-y-[105px] transition-all duration-500"></div>
                                   </div>
@@ -438,8 +478,8 @@ const About = () => {
                           className="mySwiper cursor-pointer h-[170px] max-w-[600px] mx-auto xl:mx-0"
                           style={{ width: "100%" }}
                         >
-                          {techTools.map((tools, index) => (
-                            <SwiperSlide>
+                          {techTools.map((tools) => (
+                            <SwiperSlide key={tools._id}>
                               <Avatar className="relative h-12 w-12 justify-center items-center">
                                 <AvatarImage src={tools.image} alt="@shadcn" />
                                 <AvatarFallback>T</AvatarFallback>

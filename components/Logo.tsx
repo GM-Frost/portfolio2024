@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Logo = () => {
   return (
-    <Link href="/">
+    <Link href="/" className="flex items-center justify-center">
       <Image
         src="/logo.svg"
         width={54}
@@ -12,6 +12,9 @@ const Logo = () => {
         alt="Nayan Bastola"
         priority
       />
+      <span className="font-medium uppercase text-primary text-2xl -ml-2">
+        ayan
+      </span>
     </Link>
   );
 };
