@@ -8,45 +8,45 @@ import {
 } from "react-icons/ri";
 import Link from "next/link";
 
-const icons = [
-  {
-    path: "/",
-    name: <RiLinkedinFill />,
-  },
-  {
-    path: "/",
-    name: <RiFacebookFill />,
-  },
-  {
-    path: "/",
-    name: <RiDiscordFill />,
-  },
+interface SocialLink {
+  socialMediaName: string;
+  _key: string;
+  url: string;
+}
 
-  {
-    path: "/",
-    name: <RiGithubFill />,
-  },
-
-  {
-    path: "/",
-    name: <RiInstagramFill />,
-  },
-];
+const iconsMapping: Record<string, JSX.Element> = {
+  LinkedIn: <RiLinkedinFill />,
+  Facebook: <RiFacebookFill />,
+  Discord: <RiDiscordFill />,
+  Github: <RiGithubFill />,
+  Instagram: <RiInstagramFill />,
+};
 
 interface SocialsProps {
   containerStyles: string;
   iconsStyles: string;
+  socialLinks?: SocialLink[];
 }
 
-const Socials: React.FC<SocialsProps> = ({ containerStyles, iconsStyles }) => {
+const Socials: React.FC<SocialsProps> = ({
+  containerStyles,
+  iconsStyles,
+  socialLinks,
+}) => {
   return (
     <div className={`${containerStyles}`}>
-      {icons.map((icon, i) => {
-        return (
-          <Link href={icon.path} key={i}>
-            <div className={`${iconsStyles}`}>{icon.name}</div>
-          </Link>
-        );
+      {socialLinks?.map((socialLink) => {
+        const icon = iconsMapping[socialLink.socialMediaName];
+
+        if (icon) {
+          return (
+            <Link href={socialLink.url} key={socialLink._key} target="_blank">
+              <div className={`${iconsStyles}`}>{icon}</div>
+            </Link>
+          );
+        }
+
+        return null;
       })}
     </div>
   );

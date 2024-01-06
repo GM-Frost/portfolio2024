@@ -89,3 +89,8 @@
   .swiper-pagination-bullet {
   @apply bg-primary;
 }
+
+/* width */
+::-webkit-scrollbar {
+  display: none;
+}

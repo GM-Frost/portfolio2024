@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { Download, FileText, Send } from "lucide-react";
+import { Cog, Send } from "lucide-react";
 import {
   RiBriefcase4Fill,
   RiTeamFill,
@@ -47,8 +47,9 @@ const Hero: React.FC = () => {
             </h1>
 
             <p className="subtitle max-w-[490px] mx-auto xl:mx-0">
-              I help our clients create brands, build digital products and
-              services, innovate, find opportunities and validate ideas
+              I help in empowering clients through transformative Full Stack
+              development, turning ideas into powerful digital services and
+              innovative experiences.
             </p>
             {/* Button */}
             <div className="flex flex-col gap-y-3 md:flex-row gap-x-3 mx-auto xl:mx-0 mb-12">
@@ -61,6 +62,7 @@ const Hero: React.FC = () => {
             </div>
             {/* Socials */}
             <Socials
+              socialLinks={personalInfo?.socialLinks || []}
               containerStyles="flex gap-x-6 mx-auto xl:mx-0"
               iconsStyles="text-foreground text-[22px] hover:text-primary transition-all duration-300"
             />
@@ -78,18 +80,18 @@ const Hero: React.FC = () => {
             <Badge
               containerStyles="absolute top-[80%] right-[20rem]"
               icon={<RiTodoFill />}
-              endCountNum={9}
-              endCountText="k"
-              badgeText="Completed Projects"
+              endCountNum={40}
+              endCountText="+"
+              badgeText="Full Stack Projects"
             />
 
             {/* Badge 3*/}
             <Badge
               containerStyles="absolute top-[55%] -right-8"
-              icon={<RiTeamFill />}
-              endCountNum={12}
-              endCountText="k"
-              badgeText="Teams Satisfied"
+              icon={<Cog />}
+              endCountNum={20}
+              endCountText="+"
+              badgeText="Tech Tools"
             />
             <div className="bg-hero_shape2_light dark:bg-hero_shape2_dark w-[500px] h-[500px] bg-no-repeat absolute -top-1 -right-2">
               <Devimg

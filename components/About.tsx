@@ -114,6 +114,13 @@ const About = () => {
 
   const [infoData, setInfoData] = useState(defaultInfoData);
 
+  const startDate = new Date("2018-06-01");
+  const endDate = new Date();
+  const timeDifference: number = endDate.getTime() - startDate.getTime();
+  const yearsDifference: number =
+    timeDifference / (1000 * 60 * 60 * 24 * 365.25);
+  const currentYears: number = Math.floor(yearsDifference);
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -291,7 +298,8 @@ const About = () => {
                 <TabsContent value="personal">
                   <div className="text-center xl:text-left">
                     <h3 className="h3 mb-4">
-                      Deliver quality for over 15 years{" "}
+                      Over {currentYears} Years of Passionate Development and
+                      Innovation
                     </h3>
                     <p className="subtitle max-w-xl mx-auto xl:mx-0">
                       {personalInfo?.about}
