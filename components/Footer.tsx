@@ -23,8 +23,6 @@ const Footer = () => {
     fetchInformation();
   }, []);
 
-  console.log(personalInfo);
-
   return (
     <footer className="bg-secondary py-12">
       <div className="container mx-auto">
