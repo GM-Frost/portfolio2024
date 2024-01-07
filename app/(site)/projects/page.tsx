@@ -36,6 +36,9 @@ const Projects = () => {
     fetchData();
   }, []);
 
+  const totalCategories: number = categories.length;
+  const gridTemplateColumns: string = `md:grid-cols-${totalCategories}`;
+
   return (
     <section className="min-h-screen pt-12">
       <div className="container mx-auto">
@@ -51,7 +54,9 @@ const Projects = () => {
           <>
             {/* Tabs */}
             <Tabs defaultValue={project} className="mb-24 xl:mb-48">
-              <TabsList className="w-full grid h-full md:grid-cols-5 lg:max-w-[640px] mb-12 mx-auto md:border dark:border-none">
+              <TabsList
+                className={`w-full grid h-full ${gridTemplateColumns} lg:max-w-[640px] mb-12 mx-auto md:border dark:border-none`}
+              >
                 {categories.map((category, index) => (
                   <TabsTrigger
                     onClick={() => setProject(category)}
