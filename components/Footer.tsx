@@ -1,27 +1,29 @@
 "use client";
-import { Divide } from "lucide-react";
+
 import Socials from "./Socials";
 import { IPersonalInfo } from "@/typings";
 import { useEffect, useState } from "react";
-import fetchPersonalInfo from "@/utils/fetchPersonalInfo";
+import { fetchPersonalInfo } from "@/utils/fetchPersonalInfo";
 
 const Footer = () => {
   const date = new Date().getFullYear();
 
-  const [personalInfo, setPersonalInfo] = useState<IPersonalInfo>();
+  const [personalInfo, setPersonalInfo] = useState<IPersonalInfo | undefined>();
 
   useEffect(() => {
-    const fetchInfomation = async () => {
+    const fetchInformation = async () => {
       try {
         const response = await fetchPersonalInfo();
-        setPersonalInfo(response[0]);
+        setPersonalInfo(response[0] || undefined);
       } catch (error) {
         console.error("Error fetching personal information:", error);
       }
     };
 
-    fetchInfomation();
+    fetchInformation();
   }, []);
+
+  console.log(personalInfo);
 
   return (
     <footer className="bg-secondary py-12">

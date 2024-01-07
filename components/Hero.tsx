@@ -12,10 +12,11 @@ import Devimg from "./Devimg";
 import Badge from "./Badge";
 import Socials from "./Socials";
 import { useEffect, useState } from "react";
-import fetchPersonalInfo from "@/utils/fetchPersonalInfo";
+
 import { IPersonalInfo } from "@/typings";
 
 import DownloadDialog from "./DownloadDialog";
+import { fetchPersonalInfo } from "@/utils/fetchPersonalInfo";
 
 const Hero: React.FC = () => {
   const [personalInfo, setPersonalInfo] = useState<IPersonalInfo>();

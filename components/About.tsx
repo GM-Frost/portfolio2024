@@ -6,7 +6,6 @@ import {
   User2,
   MailIcon,
   HomeIcon,
-  PhoneCall,
   GraduationCap,
   Calendar,
   Briefcase,
@@ -43,8 +42,7 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip";
 import { fetchTools } from "@/utils/fetchTools";
-
-import fetchPersonalInfo from "@/utils/fetchPersonalInfo";
+import { fetchPersonalInfo } from "@/utils/fetchPersonalInfo";
 
 const defaultInfoData = [
   {

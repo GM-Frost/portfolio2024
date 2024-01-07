@@ -23,23 +23,28 @@ interface Technology {
   image: string;
 }
 
+interface SocialLink {
+  _key: string;
+  socialMediaName: string;
+  url: string;
+}
+
 export interface IProject extends SanityBody {
   name: string;
   slug: string;
-  image: Image;
+  image: string;
   category: string;
-  projectURL: string;
-  githubURL: string;
+  projectUrl: string;
+  githubUrl: string;
   completionDate: string;
-  description: string; // Assuming description is a string
+  description: string;
   technologies: Technology[];
-  // content: PortableTextBlock[];
 }
 
 export interface IExperience extends SanityBody {
   company: string;
   title: string;
-  companyimg: Image;
+  companyimg: string;
   startDate: string;
   endDate: string;
   currentlyWorking: boolean;
@@ -70,18 +75,18 @@ export interface ISkills extends SanityBody {
 export interface ITechTools extends SanityBody {
   title: string;
   progress: number;
-  image: Image;
+  image: string;
 }
 
-export interface IPersonalInfo {
-  phone: string;
-  resumePDF: string;
-  jobtitle: string;
-  resumeDoc: string;
-  image: string;
+export interface IPersonalInfo extends SanityBody {
   name: string;
+  jobtitle: string;
   email: string;
+  phone: string;
   address: string;
   about: string;
+  image: string;
   socialLinks: SocialLink[];
+  resumeDoc: string;
+  resumePDF: string;
 }

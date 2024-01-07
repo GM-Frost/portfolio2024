@@ -5,8 +5,13 @@ import { GithubIcon, PlayIcon } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { IProject } from "@/typings";
 
-const ProjectCard = ({ project }) => {
+interface ProjectCardProps {
+  project: IProject;
+}
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const maxLength = 200;
   const truncatedDescription = project.description.slice(0, maxLength);
 

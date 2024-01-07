@@ -16,9 +16,8 @@ const query = groq`
     address,
     about,
     socialLinks[]{
-      socialMediaName,
-      _key,
-      url
+      "socialMediaName": socialMediaName,
+    "url": url
     }
 }
 `;
