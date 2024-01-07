@@ -69,7 +69,7 @@ export interface ICertificate {
 
 export interface ISkills extends SanityBody {
   skilltitle: string;
-  techtools: any[];
+  techtools: { tools: string }[];
 }
 
 export interface ITechTools extends SanityBody {
