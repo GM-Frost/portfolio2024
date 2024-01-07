@@ -35,12 +35,16 @@ const Socials: React.FC<SocialsProps> = ({
 }) => {
   return (
     <div className={`${containerStyles}`}>
-      {socialLinks?.map((socialLink) => {
+      {socialLinks?.map((socialLink, index) => {
         const icon = iconsMapping[socialLink.socialMediaName];
 
         if (icon) {
           return (
-            <Link href={socialLink.url} key={socialLink._key} target="_blank">
+            <Link
+              href={socialLink.url}
+              key={socialLink._key || index}
+              target="_blank"
+            >
               <div className={`${iconsStyles}`}>{icon}</div>
             </Link>
           );
