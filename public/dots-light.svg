@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="22.636" height="20.435" viewBox="0 0 22.636 20.435">
-  <g id="dots-light" transform="translate(0.993 0)">
-    <path id="Path_3" data-name="Path 3" d="M20.774,8.915A8.045,8.045,0,1,1,12.729.87a8.045,8.045,0,0,1,8.045,8.045Z" fill="none" stroke="#212131" stroke-width="1.739"/>
-    <g id="Ellipse_2" data-name="Ellipse 2" transform="translate(-0.993 2.435)" fill="none" stroke="#7b39ed" stroke-width="1">
-      <circle cx="9" cy="9" r="9" stroke="none"/>
-      <circle cx="9" cy="9" r="8.5" fill="none"/>
-    </g>
-  </g>
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 21" width="23" height="21">
+	<title>dots-light1-svg</title>
+	<defs>
+		<image  width="24" height="22" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAWCAMAAADto6y6AAAAAXNSR0IB2cksfwAAAblQTFRFAAAAHyonICooICspHyspHyooHyooICooHygmHiknHyooICspHyspHyooHyooHyspHyspQqfBMmx2M2x1L2BnLFlhGygmICooHyspHyooEx8dSLHFSbDGR63DPo+eN3eDQZirSK/FSLDGGiMiHyooICooSK/FSa/FR6/FICooHyooICooICooSK/FSbDGR63DHyonHyooHCglICspSa/FSK/FHyspHR0dICooHisoRKrESLDGRa3DICspICooHiooR6/FSbDGHCclHyspGykmHiooSa/FSa/FGCglHyooHSgmICspSLDGRq7EGhoaHyspHyspHyonSbDGQ7bAHyooHSgmICooHiknSK/FSK3DHyooSK/FSK/FICooBSMdICooSK/FSK/FHiknHyooHyspQJaoHyspNpy1SK/FSa/FICspHyooHyooOoWSQ6C0IS8uHyooRq7ESLDGPbHCGiYjHyooIDIyQ5+yK1RZHyooHiooSK/FSbDGR67EICspKk9SQJWnPImXHiknAAAAR6/FSa/FR6/FSK++R7HESa/FSbDGSLDGSK/FSK/FSK/FRa7ERq7ER6/FQ6rA6O8fuQAAAJN0Uk5TAFer0ffYpnUoU9D/7MXk/G4Vj/+yORyM57UOQM/1//apvvAToZuF6lzaULpVo6YXgX8t4l7NwQiUKhnsPsJdWmuZI5gmi51nFqUzjdA0Cb1ZZ/wKtiKjQsk7YJdtyQbDZKAx/ml6sQfaUeuwEHn1/59M3wwe/fX//99bkcEzfcryz1IFavh4EiWz7t6spdsnWU8efnSg3wAAAUpJREFUeJyNkVVDQkEQhY+Njo0NtgIGYIBIKGBhgAGoIBjYit3doNj6i733EqK+OA8z853Z3ZndBf5hMbFx8QmJSbxfcnIKUWpaOlFGZrSclc3n5+QySV5+ARUWhWWBsLiktKy8QihgoLKKqkO6SCypoVomkYhFLNdRPadLZfIGauRSuUzK+CZqZkGhBFpIFdqtVDCuldSARquDitrC7XRaDdBOesBgBDqoMzKf0QB0UTfQYwJ6qS9SMPUA/TQAmC3AIA1FChYzMEwjgNXGkJ1GwwWbFRijccDhZGiCPTRoTgfU3CwuN4uToTsBbtfUNAczHhZn52g+WPAsLLKtgaXlFe5xV8mrXwPWNzZpK7hke2eXDXt2Ito/ODw6Pgm3Oz075yLvwnt5dX1z+/0Zdz6/nI33ft8dfthD4PHp+eX1MfCAP/b2/vEZzV8ntjfBqnRrSAAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+	</style>
+	<use id="dots-light" href="#img1" x="-1" y="-1"/>
 </svg>

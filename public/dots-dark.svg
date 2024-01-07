@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="22.636" height="20.435" viewBox="0 0 22.636 20.435">
-  <g id="dots-dark" transform="translate(1 -0.13)">
-    <path id="Path_2" data-name="Path 2" d="M20.767,9.045A8.045,8.045,0,1,1,12.722,1,8.045,8.045,0,0,1,20.767,9.045Z" fill="none" stroke="#7b39ed" stroke-width="1.739"/>
-    <g id="Ellipse_3" data-name="Ellipse 3" transform="translate(-1 2.565)" fill="none" stroke="#4f5177" stroke-width="1">
-      <circle cx="9" cy="9" r="9" stroke="none"/>
-      <circle cx="9" cy="9" r="8.5" fill="none"/>
-    </g>
-  </g>
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 21" width="23" height="21">
+	<title>dots-dark-svg</title>
+	<defs>
+		<image  width="24" height="22" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAWCAMAAADto6y6AAAAAXNSR0IB2cksfwAAAblQTFRFAAAARai9Rqq/RqrARqq/Rqq/RqrARqm+Qqi+RarARqrARqrARqrARqrARqq/RqrARqq/SUltSHybSn+dSIaiRYWgRa3ARqrARqq/RqrARbPATFB0T1B2T1N4TGiJS3iWTWCCTlF2T1F3Q6G4Ram/RqrAT1F3TlF3TlB0Rqq/RKm/Rqq/RqrATlB3TlB2Tk5vRam+RqrARqq8RqrAT091TlF2RqrAMaGyRqq/RarAR0dwT1B3Tk5zRqrARam/Rqm+T091TlB2Qaa8RarARKi+RqrATlB3TU93PaW7Rqq/Ram+RqrATlF3Tk52Ram4Rqq/RKi+Rqm+T1F2TU1mRqrAQ6e8Rqq/RKm/T1B2Tk51Rqq/Tk92TVB1Rqq/OaWsRqrATU91TlB2Qqe9RqrARqq/TGCCRqq/SUltTlF2T090RqrARqq/Pp+0S2yMTVt+Rqe+Rqq/TVF1T1B3QEBqQaS6RqrARqW7TluASI+qRqrARay+TVF2TlF3S1BzRarAR5OsTGOGS2uLRqq/PpilTU92TlB2T1F3R0dxTEx1TlB2TlB3TlB2T1B3T1B3TlB3Tk52TVB1TVF0TU1365Q4hgAAAJN0Uk5TAFer0ffYpnUoU9D/7MXk/G4Vj/+yORyM57UOQM/1//apvvAToZuF6lzaULpVo6YXgX8t4l7NwQiUKhnsPsJdWmuZI5gmi51nFqUzjdA0Cb1ZZ/wKtiKjQsk7YJdtyQbDZKAx/ml6sQfaUeuwEHn1/59M3wwe/fX//99bkcEzfcryz1IFavh4EiWz7t6spdsnWU8efnSg3wAAAUpJREFUeJyNkVVDQkEQhY+Njo0NtgIGYIBIKGBhgAGoIBjYit3doNj6i733EqK+OA8z853Z3ZndBf5hMbFx8QmJSbxfcnIKUWpaOlFGZrSclc3n5+QySV5+ARUWhWWBsLiktKy8QihgoLKKqkO6SCypoVomkYhFLNdRPadLZfIGauRSuUzK+CZqZkGhBFpIFdqtVDCuldSARquDitrC7XRaDdBOesBgBDqoMzKf0QB0UTfQYwJ6qS9SMPUA/TQAmC3AIA1FChYzMEwjgNXGkJ1GwwWbFRijccDhZGiCPTRoTgfU3CwuN4uToTsBbtfUNAczHhZn52g+WPAsLLKtgaXlFe5xV8mrXwPWNzZpK7hke2eXDXt2Ito/ODw6Pgm3Oz075yLvwnt5dX1z+/0Zdz6/nI33ft8dfthD4PHp+eX1MfCAP/b2/vEZzV8ntjfBqnRrSAAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+	</style>
+	<use id="dots-dark" href="#img1" x="-1" y="-1"/>
 </svg>
