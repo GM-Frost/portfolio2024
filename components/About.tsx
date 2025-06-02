@@ -1,11 +1,27 @@
+import { sanityClient } from "@/app/lib/sanity";
 import Devimg from "./Devimg";
 import Achievements from "./about-section/Achievements";
 import PersonalInfo from "./about-section/PersonalInfo";
 import Qualifications from "./about-section/Qualifications";
 import Skills from "./about-section/Skills";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import {
+  awardsQuery,
+  certQuery,
+  experienceQuery,
+  personalQuery,
+  skillsQuery,
+  toolsQuery,
+} from "@/app/lib/queries";
 
-const About = () => {
+export default async function About() {
+  const personalInfo = await sanityClient.fetch(personalQuery);
+  const experiencesInfo = await sanityClient.fetch(experienceQuery);
+  const skillsInfo = await sanityClient.fetch(skillsQuery);
+  const techToolsInfo = await sanityClient.fetch(toolsQuery);
+  const awardsInfo = await sanityClient.fetch(awardsQuery);
+  const certificationsInfo = await sanityClient.fetch(certQuery);
+
   return (
     <section className="xl:h-[860px] pb-12 xl:py-24">
       <div className="container mx-auto">
@@ -47,22 +63,28 @@ const About = () => {
               <div className="text-lg mt-12 xl:mt-8">
                 {/* PERSONAL - Tabs Content */}
                 <TabsContent value="personal">
-                  <PersonalInfo />
+                  <PersonalInfo personalInfo={personalInfo} />
                 </TabsContent>
 
                 {/* QUALIFICATIONS - Tabs Content */}
                 <TabsContent value="qualifications">
-                  <Qualifications />
+                  <Qualifications experiencesInfo={experiencesInfo} />
                 </TabsContent>
 
                 {/* SKILLS - Tabs Content */}
                 <TabsContent value="skills">
-                  <Skills />
+                  <Skills
+                    skillsInfo={skillsInfo}
+                    techToolsInfo={techToolsInfo}
+                  />
                 </TabsContent>
 
                 {/* ACHIEVEMENT - Tabs Content */}
                 <TabsContent value="achievements">
-                  <Achievements />
+                  <Achievements
+                    awardsInfo={awardsInfo}
+                    certificationsInfo={certificationsInfo}
+                  />
                 </TabsContent>
               </div>
             </Tabs>
@@ -71,6 +93,4 @@ const About = () => {
       </div>
     </section>
   );
-};
-
-export default About;
+}

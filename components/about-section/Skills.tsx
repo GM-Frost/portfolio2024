@@ -1,4 +1,5 @@
 "use client";
+
 import {
   Tooltip,
   TooltipContent,
@@ -10,63 +11,31 @@ import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
 
-//Importing Required modules
 import { Grid, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { useEffect, useState } from "react";
+
+import React from "react";
 import { ISkills, ITechTools } from "@/typings";
-import { fetchSkills } from "@/utils/fetchSkills";
-import { fetchTools } from "@/utils/fetchTools";
 
-const Skills: React.FC = () => {
-  const [skills, setSkills] = useState<ISkills[]>([]);
-  const [techTools, setTechTools] = useState<ITechTools[]>([]);
+type Props = {
+  skillsInfo: ISkills[];
+  techToolsInfo: ITechTools[];
+};
 
-  const [loading, setLoading] = useState<boolean>(false);
-
-  useEffect(() => {
-    const fetchSkillsData = async () => {
-      setLoading(true);
-      try {
-        const skillsData: ISkills[] = await fetchSkills();
-        setSkills([...skillsData]);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching Awards", error);
-        setLoading(true);
-      }
-    };
-
-    fetchSkillsData();
-  }, []);
-
-  useEffect(() => {
-    const fetchTechTools = async () => {
-      setLoading(true);
-      try {
-        const techToolsData: ITechTools[] = await fetchTools();
-        setTechTools([...techToolsData]);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching Awards", error);
-        setLoading(true);
-      }
-    };
-
-    fetchTechTools();
-  }, []);
-
+const Skills: React.FC<Props> = ({ skillsInfo, techToolsInfo }) => {
   return (
     <div className="text-center xl:text-left">
       <h3 className="h3 mb-8">Technical Stack</h3>
-      {/* Skills */}
+
+      {/* SKILLS LIST */}
       <div className="mb-16">
         <h4 className="text-xl font-semibold mb-2">Skills</h4>
         <div className="border-b border-border mb-4"></div>
-        {/* SKILLS LIST */}
+
+        {/* Render each skill as a tooltip */}
         <div className="md:grid md:grid-cols-2">
-          {skills.map((skill) => (
+          {skillsInfo.map((skill) => (
             <TooltipProvider key={skill._id}>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -88,11 +57,11 @@ const Skills: React.FC = () => {
           ))}
         </div>
       </div>
-      {/* Tools */}
+
+      {/* TECH TOOLS CAROUSEL */}
       <div>
         <h4 className="text-xl font-semibold mb-2 xl:text-left">Tools</h4>
         <div className="border-b border-border mb-4">
-          {/* Tools List */}
           <Swiper
             slidesPerView={5}
             grid={{
@@ -106,11 +75,11 @@ const Skills: React.FC = () => {
             className="mySwiper cursor-pointer h-[170px] max-w-[600px] mx-auto xl:mx-0"
             style={{ width: "100%" }}
           >
-            {techTools.map((tools) => (
-              <SwiperSlide key={tools._id}>
+            {techToolsInfo.map((tool) => (
+              <SwiperSlide key={tool._id}>
                 <Avatar className="relative h-12 w-12 justify-center items-center">
-                  <AvatarImage src={tools.image} alt="@shadcn" />
-                  <AvatarFallback>T</AvatarFallback>
+                  <AvatarImage src={tool.image} alt={tool.title} />
+                  <AvatarFallback>{tool.title.charAt(0)}</AvatarFallback>
                 </Avatar>
               </SwiperSlide>
             ))}

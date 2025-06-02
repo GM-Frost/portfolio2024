@@ -16,7 +16,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const truncatedDescription = project.description.slice(0, maxLength);
 
   return (
-    <Card className="group overflow-hidden relative" key={project._id}>
+    <Card className="group overflow-hidden relative">
       <CardHeader className="p-0">
         {/* Image */}
         <div className="relative w-full h-[250px] flex items-center justify-center bg-tertiary dark:bg-secondary/40 xl:dark:bg-work_project_bg_dark xl:bg-work_project_bg_light xl:bg-[110%] xl:bg-no-repeat overflow-hidden">
@@ -31,14 +31,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           {/* Buttons */}
           <div className="flex gap-x-8">
             <Link
-              href={project?.projectUrl ? project.projectUrl : "#"}
+              href={project.projectUrl || "#"}
               target="_blank"
               className="bg-secondary w-[54px] h-[54px] rounded-full flex justify-center items-center scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300"
             >
               <PlayIcon className="text-white hover:scale-125 transition-all duration-300" />
             </Link>
             <Link
-              href={project?.githubUrl ? project.githubUrl : "#"}
+              href={project.githubUrl || "#"}
               target="_blank"
               className="bg-secondary w-[54px] h-[54px] rounded-full flex justify-center items-center scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300"
             >
@@ -47,22 +47,23 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           </div>
         </div>
       </CardHeader>
+
       <div className="h-full px-8 py-6">
         <Badge className="uppercase text-sm font-medium mb-2 absolute top-4 left-5">
           {project.category}
         </Badge>
         <div className="flex gap-2 justify-end items-center">
-          {project?.technologies?.slice(0, 5).map((tech: any) => (
+          {project.technologies.slice(0, 5).map((tech) => (
             <Avatar key={tech._id}>
-              <AvatarImage src={tech.image} />
-              <AvatarFallback>T</AvatarFallback>
+              <AvatarImage src={tech.image} alt={tech.title} />
+              <AvatarFallback>{tech.title.charAt(0)}</AvatarFallback>
             </Avatar>
           ))}
         </div>
 
         <h4 className="h4 mb-1">{project.name}</h4>
         <p className="text-muted-foreground text-lg">
-          {truncatedDescription}...
+          {truncatedDescription}...{" "}
           <span>
             <Button variant="link">Read More</Button>
           </span>

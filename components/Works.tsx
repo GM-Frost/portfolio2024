@@ -15,55 +15,6 @@ import { useEffect, useState } from "react";
 import { IProject } from "@/typings";
 import { fetchProjects } from "@/utils/fetchProjects";
 
-//getting sanity project data
-
-// const projectData = [
-//   {
-//     image: "/work/2.png",
-//     category: "python",
-//     name: "Gain Strom",
-//     description:
-//       "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-//     link: "/",
-//     github: "/",
-//   },
-//   {
-//     image: "/work/4.png",
-//     category: "next js",
-//     name: "Gym Website",
-//     description:
-//       "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-//     link: "/",
-//     github: "/",
-//   },
-//   {
-//     image: "/work/3.png",
-//     category: "CSS Animation Effects",
-//     name: "Somethign Else",
-//     description:
-//       "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-//     link: "/",
-//     github: "/",
-//   },
-//   {
-//     image: "/work/2.png",
-//     category: "Django",
-//     name: "Particules Website",
-//     description:
-//       "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-//     link: "/",
-//     github: "/",
-//   },
-//   {
-//     image: "/work/1.png",
-//     category: "React",
-//     name: "Food Website",
-//     description:
-//       "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-//     link: "/",
-//     github: "/",
-//   },
-// ];
 const Works = () => {
   const [projects, setProjects] = useState<IProject[]>([]);
 

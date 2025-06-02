@@ -11,29 +11,16 @@ import {
 import Devimg from "./Devimg";
 import Badge from "./Badge";
 import Socials from "./Socials";
-import { useEffect, useState } from "react";
 
 import { IPersonalInfo } from "@/typings";
 
 import DownloadDialog from "./DownloadDialog";
-import { fetchPersonalInfo } from "@/utils/fetchPersonalInfo";
 
-const Hero: React.FC = () => {
-  const [personalInfo, setPersonalInfo] = useState<IPersonalInfo>();
+type Props = {
+  personalInfo: IPersonalInfo;
+};
 
-  useEffect(() => {
-    const fetchInfomation = async () => {
-      try {
-        const response = await fetchPersonalInfo();
-        setPersonalInfo(response[0]);
-      } catch (error) {
-        console.error("Error fetching personal information:", error);
-      }
-    };
-
-    fetchInfomation();
-  }, []);
-
+const Hero: React.FC<Props> = ({ personalInfo }) => {
   const startDate = new Date("2018-06-01");
   const endDate = new Date();
   const timeDifference: number = endDate.getTime() - startDate.getTime();

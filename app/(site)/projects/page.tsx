@@ -1,40 +1,26 @@
-"use client";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+export const dynamic = "force-dynamic";
+
+import { projectQuery } from "@/app/lib/queries";
+import { sanityClient } from "@/app/lib/sanity";
+
 import ProjectCard from "@/components/ProjectCard";
-import { useEffect, useState } from "react";
-import { TabsContent } from "@radix-ui/react-tabs";
-import { fetchProjects } from "@/utils/fetchProjects";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { IProject } from "@/typings";
-import Loader from "@/components/Loader";
 
-const Projects = () => {
-  const [categories, setCategories] = useState<string[]>([]);
-  const [projectData, setProjectData] = useState<IProject[]>([]);
-  const [project, setProject] = useState<string>("all projects");
-  const [loading, setLoading] = useState<boolean>(true);
+type ProjectCategory = "all projects" | string;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const allProjects: IProject[] = await fetchProjects();
-        const uniqueCategories = [
-          "all projects",
-          ...(Array.from(
-            new Set(allProjects.map((item) => item.category))
-          ) as string[]),
-        ];
+export default async function ProjectsPage() {
+  // 1) Fetch all projects from Sanity
+  const allProjects: IProject[] = await sanityClient.fetch(projectQuery);
 
-        setCategories([...uniqueCategories]);
-        setProjectData([...allProjects]);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching projects");
-        setLoading(false);
-      }
-    };
+  // 2) Derive unique categories
+  const uniqueCategories: ProjectCategory[] = [
+    "all projects",
+    ...Array.from(new Set(allProjects.map((p) => p.category))),
+  ];
 
-    fetchData();
-  }, []);
+  // We’ll keep “all projects” as the default category
+  const defaultCategory: ProjectCategory = "all projects";
 
   return (
     <section className="min-h-screen pt-12">
@@ -43,52 +29,46 @@ const Projects = () => {
           My Projects
         </h2>
 
-        {loading && projectData.length === 0 ? (
-          <div className="flex w-full mx-auto justify-center text-center items-center">
-            <Loader />
-          </div>
-        ) : (
-          <>
-            {/* Tabs */}
-            <Tabs defaultValue={project} className="mb-24 xl:mb-48">
-              <TabsList
-                className={`w-full grid h-full md:grid-cols-6 lg:max-w-[640px] mb-12 mx-auto md:border dark:border-none`}
+        {/* ── Tabs (server‐rendered) ── */}
+        <Tabs defaultValue={defaultCategory} className="mb-24 xl:mb-48">
+          <TabsList className="w-full grid h-full md:grid-cols-6 lg:max-w-[640px] mb-12 mx-auto md:border dark:border-none">
+            {uniqueCategories.map((category) => (
+              <TabsTrigger
+                key={category}
+                value={category}
+                className="capitalize w-[162px] md:w-auto"
               >
-                {categories.map((category, index) => (
-                  <TabsTrigger
-                    onClick={() => setProject(category)}
-                    key={index}
-                    value={category}
-                    className="capitalize w-[162px] md:w-auto"
-                  >
-                    {category}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-              {/* tabs content */}
-              <div className="text-lg xl:mt-8 grid grid-cols-1 lg:grid-cols-3 gap-4">
-                {projectData
-                  .filter((filterData) =>
-                    project === "all projects"
-                      ? filterData
-                      : (filterData as { category: string }).category ===
-                        project
-                  )
-                  .map((projectItem, index) => (
-                    <TabsContent value={project} key={index}>
-                      <ProjectCard project={projectItem} />
-                    </TabsContent>
-                  ))}
-              </div>
-            </Tabs>
-            {projectData.length === 0 && !loading && (
-              <p className="text-center mt-8 text-xl">No Projects Found Here</p>
-            )}
-          </>
-        )}
+                {category}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+
+          {/* ── Tabs Content ── */}
+          {uniqueCategories.map((category) => {
+            // For each category, filter the projects array server‐side
+            const filteredProjects =
+              category === "all projects"
+                ? allProjects
+                : allProjects.filter((p) => p.category === category);
+
+            return (
+              <TabsContent value={category} key={category}>
+                {filteredProjects.length === 0 ? (
+                  <p className="text-center mt-8 text-xl">
+                    No projects found in “{category}”
+                  </p>
+                ) : (
+                  <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                    {filteredProjects.map((proj) => (
+                      <ProjectCard key={proj._id} project={proj} />
+                    ))}
+                  </div>
+                )}
+              </TabsContent>
+            );
+          })}
+        </Tabs>
       </div>
     </section>
   );
-};
-
-export default Projects;
+}
